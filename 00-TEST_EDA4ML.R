@@ -29,6 +29,7 @@ if (grepl('rtools', Sys.getenv("PATH"))) {
   opts = NULL
 }
 required_packages <- c(
+  'here',               # Надежная навигация по директориям проекта
   'dplyr',              # Операции с данными в стиле SQL
   'ggplot2',            # Визуализация
   'forcats',            # Ради набора данных `gss_cat`
@@ -49,6 +50,10 @@ if (!require(dataxray)) devtools::install_github('agstn/dataxray')
 data('wine', package = 'rattle')
 data('mpg', package = 'ggplot2')
 data('gss_cat', package = 'forcats')
+
+library(here)
+here::i_am('00-TEST_EDA4ML.R')
+if (!dir.exists(here('output'))) dir.create(here('output'))
 
 ## ЭТАПЫ И БИБЛИОТЕКИ ----
 ### I. Проверка структуры данных: base и dplyr ----
@@ -91,7 +96,9 @@ gg_miss_upset(gss_cat)
 library(DataExplorer)
 # Общее описание
 introduce(gss_cat)
+introduce(wine)
 plot_intro(gss_cat)
+plot_intro(wine)
 plot_density(gss_cat)
 plot_bar(gss_cat)
 
@@ -110,14 +117,14 @@ gss_cat_income <- gss_cat |>
     rincome = droplevels(rincome),
     rincome = factor(rincome, ordered = TRUE, levels = rev(income_levels[4:15]))
   )
-plot_correlation(gss_cat_income)
+plot_correlation(gss_cat_income) |> plotly::ggplotly()
 
 # Автоматический отчет
 gss_cat_income |>
   select(-denom) |>
   create_report(
     output_file  = 'gss_survey_data_profile_report',
-    output_dir   = 'output',
+    output_dir   = here('output'),
     y            = 'rincome',
     report_title = 'EDA Report - GSS Demographic Survey'
   )
@@ -178,8 +185,8 @@ diagnose_web_report(gss_cat)
 gss_cat_income |> eda_web_report(
   target     = 'rincome',
   title      = 'EDA Report - GSS Demographic Survey',
-  logo_img   = 'images/owls_R.svg',
-  output_dir = '.',
+  logo_img   = here('images', 'owls_R.svg'),
+  output_dir = here('output'),
   method     = 'spearman' # Не работает (((
 )
 # см. https://choonghyunryu.github.io/dlookr/
