@@ -181,7 +181,11 @@ plot(gss_cat_income_tv) +
 summary(gss_cat_income_tv)
 
 # Автоматические отчеты
-diagnose_web_report(gss_cat)
+diagnose_web_report(
+  gss_cat,
+  output_dir = here('output')
+)
+# см. https://choonghyunryu.github.io/dlookr_vignette/diagonosis.html
 gss_cat_income |> eda_web_report(
   target     = 'rincome',
   title      = 'EDA Report - GSS Demographic Survey',
