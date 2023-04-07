@@ -56,7 +56,7 @@ here::i_am('00-TEST_EDA4ML.R')
 if (!dir.exists(here('output'))) dir.create(here('output'))
 
 ## ЭТАПЫ И БИБЛИОТЕКИ ----
-### I. Проверка структуры данных: base и dplyr ----
+### I. Оценка объема и структуры данных: base и dplyr ----
 library(dplyr)
 library(ggplot2)
 glimpse(gss_cat)
@@ -64,7 +64,7 @@ summary(gss_cat) # Для перемнных-факторов должна бы�
 levels(gss_cat$rincome)
 is.ordered(gss_cat$rincome)
 
-### II. Проверка качества данных: skimr, naniar ----
+### II. Оценка качества данных и их соответствия задаче: skimr, naniar ----
 ##### skimr ----
 library(skimr)
 # Распределения переменных и пропущенные значения все-в-одном
@@ -91,7 +91,7 @@ vis_miss(gss_cat,facet = year)
 ## Есть ли паттерны по переменным?
 gg_miss_upset(gss_cat)
 
-### III. Полный статический EDA: dlookr, DataExplorer ----
+### III. Анализ распределения признаков и выявление выбросов: dlookr, DataExplorer ----
 ##### DataExplorer ----
 library(DataExplorer)
 # Общее описание
@@ -230,5 +230,32 @@ explore(wine)
 ### V. Рейтинг предикторов: ppsr, correlationfunnel ----
 ##### ppsr ----
 library(ppsr)
+
+# BAD DATA
+gss_ppsr_score <- gss_cat_income |>
+  select(-year, -denom) |>
+  score_predictors(y = 'rincome', do_parallel = TRUE) |>
+  as_tibble()
+gss_ppsr_score
+
+gss_cat_income |>
+  select(-year, -denom) |>
+  visualize_correlations(method = 'spearman', use = 'pairwise.complete.obs')
+
+gss_cat_income |>
+  select(-year, -denom) |>
+  visualize_pps(y = 'rincome', do_parallel = TRUE)
+
+# NICE DATA
+wine_ppsr_score <- wine |>
+  score_predictors(y = 'Type', do_parallel = TRUE) |>
+  as_tibble()
+wine_ppsr_score
+
+wine |>
+  visualize_correlations(method = 'spearman', use = 'pairwise.complete.obs')
+
+wine |>
+  visualize_pps(y = 'Type', do_parallel = TRUE)
 
 ### VI. Проверка на мультиколлинеарность (Фактор инфляции дисперсии) ----
