@@ -111,7 +111,7 @@ plot_correlation(gss_cat, maxcat = 15)
 (income_levels <- levels(gss_cat$rincome))
 gss_cat_income <- gss_cat |>
   # Оставим только наблюдения с известным уровнем дохода
-  filter(grepl('\\d', rincome)) |>
+  filter(grepl('\\d', rincome), marital != 'No answer') |>
   # Преобразуем в порядковый фактор
   mutate(
     rincome = droplevels(rincome),
@@ -126,11 +126,27 @@ gss_cat_income |>
     output_file  = 'gss_survey_data_profile_report',
     output_dir   = here('output'),
     y            = 'rincome',
-    report_title = 'EDA Report - GSS Demographic Survey'
+    report_title = 'EDA Report – GSS Demographic Survey'
   )
 # Пример выводов по результатам EDA:
 # Может, стоит создать переменную вроде «крайность», которая будет коррелировать
 # с уровнем дохода?
+
+# «Тонкая настройка» отчета
+wine_eda_config <- configure_report(
+  plot_correlation_args = list(
+    cor_args = list(use = 'pairwise.complete.obs', method = 'spearman')
+  ),
+  plot_prcomp_args = list(prcomp_args = list(scale. = TRUE))
+)
+wine |>
+  create_report(
+    output_file  = 'wine_data_profile report',
+    output_dir   = here('outcome'),
+    y            = 'Type',
+    report_title = 'EDA Report – Wine Types',
+    config       = wine_eda_config
+  )
 
 ##### dlookr ----
 library(dlookr)
@@ -193,6 +209,13 @@ gss_cat_income |> eda_web_report(
   output_dir = here('output'),
   method     = 'spearman' # Не работает (((
 )
+wine |> eda_web_report(
+  target     = 'Type',
+  title      = 'EDA Report - Wine Types',
+  logo_img   = here('images', 'owls_R.svg'),
+  output_dir = here('output'),
+  method     = 'spearman' # Не работает (((
+)
 # см. https://choonghyunryu.github.io/dlookr/
 
 ### IV. Интерактивный EDA: dataxray, explore ----
@@ -226,9 +249,18 @@ explore_all(gss_cat, target = rincome)
 # Интерактивный EDA в браузере
 explore(gss_cat)
 explore(wine)
+explore(mpg)
 
 ### V. Рейтинг предикторов: ppsr, correlationfunnel ----
 ##### ppsr ----
+# Преимущества:
+#   - учитывает нелинейную и немонотонную зависимость;
+#   - несимметричен по определению: предсказательная сила A для B ≠ ПС B для A;
+#   - одинаково трактует количественные и категориальные переменные;
+#   - понятный алгоритм расчета.
+# Недостатки:
+#   - относительно долго, особенно при расчете матрицы;
+#   - показывает силу, но не направление зависимости.
 library(ppsr)
 
 # BAD DATA
@@ -258,4 +290,82 @@ wine |>
 wine |>
   visualize_pps(y = 'Type', do_parallel = TRUE)
 
+wine |>
+  visualize_pps()
+
+wine_ppsr_score <- wine |>
+  score_predictors(y = 'Type', do_parallel = TRUE, algorithm = 'glm') |>
+  as_tibble()
+wine_ppsr_score
+
+wine_ppsr_score <- wine |>
+  score_predictors(y = 'Type', do_parallel = TRUE, cv_folds = 10) |>
+  as_tibble()
+wine_ppsr_score
+
+##### correlationfunnel ----
+# Преимущества:
+#   - учитывает нелинейную и потенциально немонотонную зависимость;
+#   - быстрее в вычислении, чем PPS;
+#   - одинаково трактует количественные и категориальные переменные;
+#   - показывает силу и направление зависимости.
+# Недостатки:
+#   - дискретизирует количественные переменные – потеря части информации;
+#   - для скорости использует корреляцию Пирсона на дихотомических данных;
+#   - результаты могут меняться в зависимости от алгоритма дискретизации;
+#   - требует отсутствия пропущенных значений.
+library(correlationfunnel)
+# correlate() conflicts
+detach('package:dlookr', unload = TRUE)
+
+# GSS
+gss_cat_bin <- gss_cat_income |>
+  select(-year) |>
+  na.omit() |>
+  binarize(thresh_infreq = .05)
+gss_cat_bin
+glimpse(gss_cat_bin)
+
+gss_cat_cor <- gss_cat_bin |>
+  correlate(target = `rincome__$25000_or_more`, method = 'kendall')
+gss_cat_cor
+
+gss_cat_cor |>
+  plot_correlation_funnel(interactive = TRUE)
+
+# Wine
+wine_cor <- wine |>
+  binarize(n_bins = 5) |>
+  correlate(target = Type__1, method = 'kendall')
+wine_cor
+hist(wine_cor$correlation)
+explore::describe(wine_cor, correlation)
+dlookr::describe(
+  wine_cor,
+  correlation,
+  quantiles = c(0, .1, .25, .5, .75, .9, 1)
+) |>
+  select(-n, -na, -se_mean)
+wine_cor |>
+  plot_correlation_funnel(interactive = TRUE)
+
+# BONUS
+wine_pps <- dlookr::pps(wine)
+wine_pps
+dlookr::pps
+dlookr:::pps.data.frame
+dlookr:::pps_impl
+plot(wine_pps)
+
 ### VI. Проверка на мультиколлинеарность (Фактор инфляции дисперсии) ----
+##### car ----
+library(car)
+mpgm <- select(mpg, -model)
+mod <- lm(cty ~ ., data = mpgm)
+summary(mod)
+vif(mod)
+# vif(mod, type = 'predictor')
+
+mpgm <- select(mpg, -model, -manufacturer, -hwy, -trans)
+mod <- lm(cty ~ ., data = mpgm)
+summary(mod)
