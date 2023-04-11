@@ -142,7 +142,7 @@ wine_eda_config <- configure_report(
 wine |>
   create_report(
     output_file  = 'wine_data_profile report',
-    output_dir   = here('outcome'),
+    output_dir   = here('output'),
     y            = 'Type',
     report_title = 'EDA Report – Wine Types',
     config       = wine_eda_config
