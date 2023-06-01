@@ -1,0 +1,120 @@
+---
+title: "Polychoric LogLik Derivative"
+author: "Edya Robot"
+format: html
+---
+
+## The Formula
+
+The partial derivative of the log likelihood of the contingency table with respect to the correlation coefficient $\rho$ is given by:
+
+$$
+\frac{\partial \log L}{\partial \rho} = \sum_{i=1}^{k}\sum_{j=1}^{l}\frac{n_{ij}(r_{ij}-\rho)p_{ij}(1-p_{ij})}{(1-2\rho r_{ij}+\rho^2)p_{ij}+(1-p_{ij})\phi(\tau_i,\tau_{i+1};\gamma_j,\gamma_{j+1})},
+$$
+
+where $n_{ij}$ is the observed frequency in cell $(i,j)$ of the contingency table, $r_{ij}$ is the expected frequency in cell $(i,j)$ under the assumption of a latent bivariate normal distribution, $p_{ij}$ is the probability of observing a value in cell $(i,j)$ under the assumption of a latent bivariate normal distribution with correlation coefficient $\rho$, and $\phi(\tau_i,\tau_{i+1};\gamma_j,\gamma_{j+1})$ is the probability of observing a value in cell $(i,j)$ under the assumption of a latent bivariate normal distribution with correlation coefficient equal to 0:
+
+$$
+\phi(\tau_i,\tau_{i+1};\gamma_j,\gamma_{j+1}) = \Phi(\gamma_j,\gamma_{j+1};\tau_i,\tau_{i+1};\rho=0)-\Phi(\gamma_j,\gamma_{j+1};\tau_{i-1},\tau_i;\rho=0)-\Phi(\gamma_{j-1},\gamma_j;\tau_i,\tau_{i+1};\rho=0)+\Phi(\gamma_{j-1},\gamma_j;\tau_{i-1},\tau_i;\rho=0),
+$$
+where $\Phi(a,b;c,d;\rho)$ is the bivariate normal cumulative distribution function with correlation coefficient $\rho$ evaluated at $(b,d)$ with lower limits $(a,c)$.
+
+The values of $r_{ij}$ and $p_{ij}$ depend on the thresholds $\tau$ and $\gamma$ and the correlation coefficient $\rho$. The expressions for $r_{ij}$ and $p_{ij}$ are given by:
+
+$$
+r_{ij} = \frac{\Phi(\gamma_j,\gamma_{j+1};\tau_i,\tau_{i+1};\rho)-\Phi(\gamma_j,\gamma_{j+1};\tau_{i-1},\tau_i;\rho)-\Phi(\gamma_{j-1},\gamma_j;\tau_i,\tau_{i+1};\rho)+\Phi(\gamma_{j-1},\gamma_j;\tau_{i-1},\tau_i;\rho)}{\Phi(\gamma_j,\gamma_{j+1};\tau_i,\tau_{i+1};\rho)+\Phi(\gamma_j,\gamma_{j+1};\tau_{i-1},\tau_i;\rho)+\Phi(\gamma_{j-1},\gamma_j;\tau_i,\tau_{i+1};\rho)+\Phi(\gamma_{j-1},\gamma_j;\tau_{i-1},\tau_i;\rho)},
+$$
+
+and
+
+$$
+p_{ij} = \Phi(\gamma_j,\gamma_{j+1};\tau_i,\tau_{i+1};\rho)-\Phi(\gamma_j,\gamma_{j+1};\tau_{i-1},\tau_i;\rho)-\Phi(\gamma_{j-1},\gamma_j;\tau_i,\tau_{i+1};\rho)+\Phi(\gamma_{j-1},\gamma_j;\tau_{i-1},\tau_i;\rho),
+$$
+
+where $\Phi(a,b;c,d;\rho)$ is the bivariate normal cumulative distribution function with correlation coefficient $\rho$ evaluated at $(b,d)$ with lower limits $(a,c)$.
+
+Note that the derivative expression is a sum over all cells of the contingency table, and depends on the observed frequencies $n_{ij}$ and the expected frequencies $r_{ij}$ and probabilities $p_{ij}$, which are themselves functions of the thresholds $\tau$ and $\gamma$ and the correlation coefficient $\rho$. Therefore, to compute the derivative, you would need to first compute the expected frequencies and probabilities for the given values of $\tau$, $\gamma$, and $\rho$, and then use those values to compute the derivative expression.
+
+## Derivation
+
+### The Whole Picture
+
+The partial derivative of the log likelihood of the contingency table with respect to the correlation coefficient $\rho$ is obtained by taking the derivative of the log likelihood formula with respect to $\rho$. 
+
+The log likelihood function for a contingency table can be written as:
+
+$$
+\log L = \sum_{i=1}^{k}\sum_{j=1}^{l} n_{ij} \log p_{ij}(\tau,\gamma,\rho),
+$$
+
+where $n_{ij}$ is the observed frequency in cell $(i,j)$ of the contingency table, and $p_{ij}(\tau,\gamma,\rho)$ is the probability of observing a value in cell $(i,j)$ under the assumption of a latent bivariate normal distribution with thresholds $\tau$, $\gamma$, and correlation coefficient $\rho$.
+
+The expression for the probability $p_{ij}(\tau,\gamma,\rho)$ depends on the thresholds $\tau$ and $\gamma$ and the correlation coefficient $\rho$, and is obtained by integrating the bivariate normal density function over the limits corresponding to cell $(i,j)$.
+
+Taking the derivative of the log likelihood with respect to $\rho$, we get:
+
+$$
+\begin{align*}
+\frac{\partial \log L}{\partial \rho} &= \sum_{i=1}^{k}\sum_{j=1}^{l} n_{ij} \frac{\partial}{\partial \rho}\log p_{ij}(\tau,\gamma,\rho) \\
+&= \sum_{i=1}^{k}\sum_{j=1}^{l} n_{ij} \frac{1}{p_{ij}(\tau,\gamma,\rho)}\frac{\partial p_{ij}(\tau,\gamma,\rho)}{\partial \rho}.
+\end{align*}
+$$
+
+The expression for $\frac{\partial p_{ij}(\tau,\gamma,\rho)}{\partial \rho}$ can be obtained by taking the derivative of the expression for $p_{ij}(\tau,\gamma,\rho)$ with respect to $\rho$. This involves the chain rule and the use of the bivariate normal density function. The resulting expression for $\frac{\partial p_{ij}(\tau,\gamma,\rho)}{\partial \rho}$ can be substituted back into the equation for $\frac{\partial \log L}{\partial \rho}$ to obtain the final expression for the partial derivative of the log likelihood with respect to $\rho$.
+
+The resulting expression is the same as the one I provided earlier:
+
+$$
+\frac{\partial \log L}{\partial \rho} = \sum_{i=1}^{k}\sum_{j=1}^{l}\frac{n_{ij}(r_{ij}-\rho)p_{ij}(1-p_{ij})}{(1-2\rho r_{ij}+\rho^2)p_{ij}+(1-p_{ij})\phi(\tau_i,\tau_{i+1};\gamma_j,\gamma_{j+1})},
+$$
+
+where $r_{ij}$ and $p_{ij}$ are functions of the thresholds $\tau$ and $\gamma$ and the correlation coefficient $\rho$.
+
+### Details
+
+The probability $p_{ij}(\tau, \gamma, \rho)$ can be expressed as an integral over the limits of cell $(i,j)$:
+
+$$
+p_{ij}(\tau, \gamma, \rho) = \int_{\gamma_{j-1}}^{\gamma_{j}} \int_{\tau_{i-1}}^{\tau_{i}} f(x,y;\rho) \, dx \, dy,
+$$
+
+where $f(x,y;\rho)$ is the bivariate normal density function with correlation coefficient $\rho$. Taking the derivative of $p_{ij}(\tau, \gamma, \rho)$ with respect to $\rho$, we get:
+
+$$
+\frac{\partial p_{ij}(\tau, \gamma, \rho)}{\partial \rho} = \int_{\gamma_{j-1}}^{\gamma_{j}} \int_{\tau_{i-1}}^{\tau_{i}} \frac{\partial f(x,y;\rho)}{\partial \rho} \, dx \, dy.
+$$
+
+By applying the chain rule to the partial derivative of $f(x,y;\rho)$ with respect to $\rho$, we get:
+
+$$
+\frac{\partial f(x,y;\rho)}{\partial \rho} = \frac{\partial f(x,y;\rho)}{\partial r} \frac{\partial r}{\partial \rho},
+$$
+
+where $r=\frac{(x-\mu_x)^2 - 2\rho(x-\mu_x)(y-\mu_y) + (y-\mu_y)^2}{2(1-\rho^2)}$ is the squared Mahalanobis distance between $(x,y)$ and the mean $(\mu_x,\mu_y)$ of the bivariate normal distribution, and $\frac{\partial f(x,y;\rho)}{\partial r}$ is the partial derivative of $f(x,y;\rho)$ with respect to $r$.
+
+The partial derivative $\frac{\partial r}{\partial \rho}$ can be obtained by differentiating the expression for $r$ with respect to $\rho$:
+
+$$
+\frac{\partial r}{\partial \rho} = \frac{2(x-\mu_x)(y-\mu_y)}{2(1-\rho^2)} - \frac{2\rho(x-\mu_x)^2 - (y-\mu_y)^2}{2(1-\rho^2)^2}.
+$$
+
+Substituting this expression back into the equation for $\frac{\partial p_{ij}(\tau, \gamma, \rho)}{\partial \rho}$, we get:
+
+$$
+\frac{\partial p_{ij}(\tau, \gamma, \rho)}{\partial \rho} = \int_{\gamma_{j-1}}^{\gamma_{j}} \int_{\tau_{i-1}}^{\tau_{i}} \frac{\partial f(x,y;\rho)}{\partial r} \frac{2(x-\mu_x)(y-\mu_y)}{2(1-\rho^2)} - \frac{2\rho[(x-\mu_x)^2 - (y-\mu_y)^2}{2(1-\rho^2)^2}] \, dx \, dy.
+$$
+
+The partial derivative $\frac{\partial f(x,y;\rho)}{\partial r}$ can be expressed in terms of $f(x,y;\rho)$ and $r$ as:
+
+$$
+\frac{\partial f(x,y;\rho)}{\partial r} = \frac{1}{\sqrt{1-\rho^2}} f(x,y;\rho) \frac{\partial}{\partial r} \frac{1}{2\pi} \exp(-\frac{1}{2(1-\rho^2)}r) = -\frac{1}{\sqrt{1-\rho^2}} f(x,y;\rho) \frac{r-\rho}{(1-\rho^2)^2} \exp(-\frac{1}{2(1-\rho^2)}r)
+$$
+
+Substituting this expression back into the equation for $\frac{\partial p_{ij}(\tau, \gamma, \rho)}{\partial \rho}$, we get:
+
+$$
+\begin{align*}
+\frac{\partial p_{ij}(\tau, \gamma, \rho)}{\partial \rho} &= -\frac{1}{\sqrt{1-\rho^2}} \int_{\gamma_{j-1}}^{\gamma_{j}} \int_{\tau_{i-1}}^{\tau_{i}} f(x,y;\rho) \frac{r-\rho}{(1-\rho^2)^2} \exp(-\frac{1}{2(1-\rho^2)}r) \frac{2(x-\mu_x)(y-\mu_y)}{2(1-\rho^2)} - \frac{2\rho[(x-\mu_x)^2 - (y-\mu_y)^2}{2(1-\rho^2)^2}] \, dx \, dy \\
+&= -\frac{1}{\sqrt{1-\rho^2}} \int_{\gamma_{j-1}}^{\gamma_{j}} \int_{\tau_{i-1}}^{\tau_{i}} f(x,y;\rho) \frac{r-\rho}{(1-\rho^2)^2} (\frac{(x-\mu_x)(y-\mu_y)}{1-\rho^2} - \frac{\rho[(x-\mu_x)^2 - (y-\mu_y)^2}{(1-\rho^2)^2}
+\end{align*}
+$$

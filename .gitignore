@@ -32,6 +32,8 @@
 *.rmd
 *.pdf
 *.html
+nul
+*_files
 
 # R Environment Variables
 .Renviron
