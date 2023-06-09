@@ -34,6 +34,7 @@
 *.html
 nul
 *_files
+misc
 
 # R Environment Variables
 .Renviron
