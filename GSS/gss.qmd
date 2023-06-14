@@ -1,0 +1,28 @@
+---
+execute:
+  echo: true
+  eval: true
+  warning: false
+---
+
+## About
+
+```{r setup}
+library(likert)
+here::i_am('99-GSS/gss.qmd')
+```
+
+The General Social Survey (GSS) collects information from the general public on a wide variety of subjects, including attitudes toward social issues, religion, education, jobs and the economy, government and other institutions, politics, and policy issues. The Schwartz Values module is a part of GSS 2012 questionnaire. This module is a good example of ordinal data, particularly Likert items.
+
+## Load Data
+
+```{r data}
+load(here::here('data', 'gss12_values.RData'))
+```
+
+## Draw Diagram
+
+```{r likert}
+gss_likert <- gss12_values |> as.data.frame() |> likert()
+```
+
