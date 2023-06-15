@@ -164,6 +164,8 @@ Quarto позволяет настраивать шаблоны и темы, к�
 Данная презентация создана в Quarto на основе шаблона Otus!
 :::
 
+# Пример проекта: статья + интерактивное приложение
+
 ## Code
 
 When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
