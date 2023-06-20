@@ -1,0 +1,29 @@
+---
+title: "Untitled"
+format: html
+---
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+#| label: fig-two-plots
+#| fig-cap: "Две диаграммы"
+#| fig-subcap: 
+#|   - "Первая диаграмма"
+#|   - "Вторая диаграмма"
+#| layout: [[20], [20]]
+
+hist(mtcars$mpg)
+hist(mtcars$disp)
+```
+
+You can add options to executable code like this 
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
