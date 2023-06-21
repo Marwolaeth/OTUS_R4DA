@@ -62,9 +62,18 @@ $presentation-line-height: 1.15;
   }
 }
 
-
 .reveal {
   line-height: 1.15em;
+}
+
+.center{
+  margin: 0!important;
+  height: 30px;
+}
+
+.inline{
+  margin: 0!important;
+  height: 1.5cm;
 }
 
 .reveal .slide blockquote {

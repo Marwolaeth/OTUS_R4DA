@@ -16,9 +16,21 @@ resource-path:
 default-image-extension: "png"
 ---
 
-## Quarto
+##  
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+![](slides/rec){.center} [**Проверить, идет ли запись**]{valign="top"}
+
+ 
+ 
+ 
+
+[**Меня хорошо видно & слышно?**]{style="font-size:2em;padding-top:10%"}
+
+
+ 
+ 
+
+![](slides/plus){.inline fig-align="left"} [Ставим “+”, если все хорошо “-”, если есть проблемы]{left="50%"}
 
 # What next? {background-image="slides/section.jpg" background-size="contain"}
 
