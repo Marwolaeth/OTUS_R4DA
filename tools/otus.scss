@@ -1,0 +1,73 @@
+/*-- scss:defaults --*/
+
+// fonts
+$font-family-sans-serif: Roboto !default;
+
+// colors
+$body-bg: #fff;
+$body-color: #111;
+$link-color: #FF9900 !default;
+$selection-bg: #FF9900 !default;
+
+// headings
+$presentation-heading-font: Roboto !default;
+$presentation-heading-color: #111 !default;
+$presentation-heading-line-height: 1.2;
+
+//title
+$presentation-title-slide-text-align:	left;
+$presentation-title-slide-body-color:	#fff;
+
+//lines;
+$presentation-line-height: 1.15;
+
+/*-- scss:rules --*/
+
+#title-slide {
+  position: absolute;
+  left: 10%;
+  width: 100%;
+  color: #eee;
+  text-align: left;
+  padding-left: 20;
+  line-height: 0.9;
+  
+  .title{
+    color: #eee;
+    font-size: 56;
+    padding-left: 200;
+    line-height: 0.9;
+  }
+  
+  .subtitle {
+    padding-top: 1em;
+    font-size: 36;
+  }
+
+  .quarto-title-authors {
+    justify-content: left;
+  
+    .quarto-title-author {
+      font-size: 18;
+      width: 100%;
+    }
+  }
+}
+
+.title-slide {
+  h1{
+    position: absolute;
+    color: #eee;
+    padding-top: 20%;
+  }
+}
+
+
+.reveal {
+  line-height: 1.15em;
+}
+
+.reveal .slide blockquote {
+  border-left: 3px solid $text-muted;
+  padding-left: 0.5em;
+}
