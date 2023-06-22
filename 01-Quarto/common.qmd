@@ -1,0 +1,132 @@
+---
+format:
+    revealjs:
+      theme: ../tools/otus.scss
+      logo: slides/owls_R.png
+      incremental: true
+      width: 960
+      height: 540
+resource-path: 
+  - "../images"
+default-image-extension: "png"
+author-name: Андрей Павлюченко
+author-role: Старший медиааналитик
+author-job : "Мониторинг и исследования медиа (Brand Analytics, Медиалогия, R, Python)"
+author-likes: "Люблю делать: Text Mining, графовый анализ, интерактивные дэшборды"
+author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
+---
+
+##  {#slide-rec data-menu-title="Запись" background-image="slides/slide.jpg" background-size="contain"}
+
+![](slides/rec){.absolute top="15" left="91" width="67"}
+
+[**Проверить, идет ли запись**]{.absolute top="20" left="171"}
+
+[**Меня хорошо видно & слышно?**]{.absolute top="120" left="80.5" style="font-size:1.6em;"}
+
+::: {.columns layout-valign="bottom"}
+::: {.column width="10%"}
+![](slides/plus){.absolute top="370" left="91" width="55" height="55"}
+:::
+
+::: {.column width="90%"}
+[Ставим "+", если все хорошо "-", если есть проблемы]{.absolute top="363" left="159"}
+:::
+:::
+
+##  {#slide-intro data-menu-title="О вебинаре" background-image="slides/slide.jpg" background-size="contain"}
+
+[Тема вебинара]{.absolute top="48" left="53" style="color:#FF9900 !important;"}
+
+[{{< meta title >}}]{.absolute top="120" left="53" style="font-size:1.6em;"}
+
+[{{< meta author-name >}}]{.absolute top="284" left="323" style="font-size:0.9em;"}
+
+![](slides/or){.absolute top="284" left="66" height="208"} ![](slides/author){.absolute top="310" left="112" height="156"}
+
+::: {.absolute top="332" left="323" style="font-size:0.4em;"}
+{{< meta author-role >}}
+
+**Об опыте:**
+
+{{< meta author-job >}}
+
+{{< meta author-likes >}}
+
+{{< meta author-contact >}}
+:::
+
+## Правила вебинара {background-image="slides/slide.jpg" background-size="contain"}
+
+::: {.columns .absolute left=88 style="font-size:0.85em;"}
+::: {.column width="20%"}
+![](slides/rules-active){.center-big}
+
+![](slides/rules-offtop){.center-big}
+
+![](slides/rules-ask){.center-big}
+
+![](slides/rules-presense){.center-big}
+
+![](slides/rules-delay){.center-big}
+:::
+
+::: {.column style="margin:0!important;"}
+Активно \
+участвуем
+
+Обсуждаем \
+в Telegram
+
+Пишем в чат или поднимаем руку и говорим
+
+Камера – желательно, но не обязательно
+
+Вопросы вижу в чате,
+могу ответить не сразу
+:::
+:::
+
+## Маршрут вебинара {background-image="slides/slide.jpg" background-size="contain"}
+
+```{mermaid webinar-route}
+%%| fig-align: left
+%%{ init: { 'flowchart': { 'curve': 'bumpX' } } }%%
+flowchart TD
+  A(Что такое Quarto и чем он отличается от Rmarkdown)
+  N(Новые возможности Quarto)
+  G(Общий алгоритм работы в Quatro)
+  C(Кастомизация проекта)
+  E(Пример проекта с параметрами)
+  R(Рефлексия)
+  
+  A --> N --> G --> C --> E --> R
+  
+  classDef monowidth width:405px,float:left;
+  class A monowidth
+  class N monowidth
+  class G monowidth
+  class C monowidth
+  class E monowidth
+  class R monowidth
+  
+  linkStyle default fill:none,stroke-dasharray:10,stroke:grey;
+```
+
+## Цели вебинара {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+[К концу вебинара вы сможете:]{style="color:#FF9900 !important;"}
+
+1. Разбираться в возможностях, форматах и опциях Quarto
+2. Создавать базовые документы в Quarto для разных форматов
+3. Наполнять их различным статическим и динамическим контентом
+4. Использовать возможности модульного и параметрического дизайна Quarto
+5. Использовать свои знания и документацию Quarto для создания продвинутых документов
+
+## Смысл {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+[Зачем это нужно? Для того, чтобы:]{style="color:#FF9900 !important;"}
+
+1. Готовить качественные отчеты с настраиваемым дизайном, чтобы эффективно представлять результаты анализа
+2. Создавать интерактивные документы, чтобы пользователи могли исследовать данные и принимать решения на основе интерактивных элементов
+3. Адаптировать документы под различные цели и требования, обеспечивая гибкость и персонализацию

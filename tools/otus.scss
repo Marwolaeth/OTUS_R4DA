@@ -1,5 +1,10 @@
 /*-- scss:defaults --*/
 
+//mermaid
+$mermaid-node-bg-color: #FFD966;
+$mermaid-node-fg-color: #FFD966;
+$mermaid-edge-color: #111;
+
 // fonts
 $font-family-sans-serif: Roboto !default;
 
@@ -23,6 +28,27 @@ $presentation-line-height: 1.15;
 
 /*-- scss:rules --*/
 
+a {
+  text-decoration: underline !important;
+}
+
+ul > li
+{
+    color: #FF9900;
+}
+
+ul > li > span
+{
+    color: #111;
+}
+
+.output {
+  width: 50%;
+  background-color: #aaa;
+  border-color: #666;
+  border: 1px solid;
+}
+
 #title-slide {
   position: absolute;
   left: 10%;
@@ -34,7 +60,7 @@ $presentation-line-height: 1.15;
   
   .title{
     color: #eee;
-    font-size: 56;
+    font-size: 56px !important;
     padding-left: 200;
     line-height: 0.9;
   }
@@ -62,6 +88,12 @@ $presentation-line-height: 1.15;
   }
 }
 
+section {
+  h2 {
+    font-size: 36px !important;
+  }
+}
+
 .reveal {
   line-height: 1.15em;
 }
@@ -69,6 +101,11 @@ $presentation-line-height: 1.15;
 .center{
   margin: 0!important;
   height: 30px;
+}
+
+.center-big{
+  margin: 0!important;
+  height: 72px;
 }
 
 .inline{

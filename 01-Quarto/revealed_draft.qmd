@@ -11,42 +11,193 @@ format:
       theme: ../tools/otus.scss
       logo: slides/owls_R.png
       incremental: true
+      width: 960
+      height: 540
+      transition: convex
 resource-path: 
   - "../images"
 default-image-extension: "png"
+author-name: Андрей Павлюченко
+author-role: Старший медиааналитик
+author-job : "Мониторинг и исследования медиа (Brand Analytics, Медиалогия, R, Python)"
+author-likes: "Люблю делать: Text Mining, графовый анализ, интерактивные дэшборды"
+author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
 ---
 
-##  
+{{< include common.qmd >}}
 
-![](slides/rec){.center} [**Проверить, идет ли запись**]{valign="top"}
+# Почему Quarto? {background-image="slides/section.jpg" background-size="contain"}
 
- 
- 
- 
+## Что за Quarto? (1 из 2) {.smaller background-image="slides/slide.jpg" background-size="contain"}
 
-[**Меня хорошо видно & слышно?**]{style="font-size:2em;padding-top:10%"}
+Quarto (отсылка к формату `in quarto`) -- система публикации документов от Posit (бывшая RStudio, создатели `Tidyverse`).
 
+Quarto -- не библиотека R, а автономное приложение с интерфейсом командной строки. Например, вы можете:
 
- 
- 
+1. Создать документ `document.qmd` в своем любимом редакторе.
+2. Добавить YAML-метаданные (как Rmarkdown, но см. ниже).
+3. Сверстать документ в нужном вам формате:
 
-![](slides/plus){.inline fig-align="left"} [Ставим “+”, если все хорошо “-”, если есть проблемы]{left="50%"}
+. . .
 
-# What next? {background-image="slides/section.jpg" background-size="contain"}
-
-## Bullets
-
-When you click the **Render** button a document will be generated that includes:
-
--   Content authored with markdown
--   Output from executable code
-
-## Code
-
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
+```       
+quarto render document.qmd
 ```
 
+## Что за Quarto? (2 из 2) {.smaller background-image="slides/slide.jpg" background-size="contain"}
 
+RStudio IDE новых версий включает Quarto, а также предоставляет для него редактор кода с автозаполнением и удобный визуальный редактор.
+
+Quarto имеет более широкие по сравнению с Rmarkdown возможности. Можно воспринимать его как:
+
+ 
+
+-   [Rmarkdown++]{}
+-   [MS Word с гибридным интерфейсом]{}
+-   [Dreamweaver для аналитиков и ученых]{}
+
+## Что нового: не только R {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Quarto умеет обрабатывать код на следующих языках:
+
+-   [R]{}
+-   [Python]{}
+-   [Julia]{}
+-   [Observable JS]{}
+
+![](slides/languages_grey)
+
+## Что нового: множество форматов вывода «из коробки» {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Quarto поддерживает множество форматов вывода, включая HTML, PDF, EPUB и другие. В Rmarkdown для большинства этих форматов необходимы дополнительные библиотеки:
+
+| **Возможности Quarto**    | **Реализация в Rmarkdown** |
+|---------------------------|----------------------------|
+| HTML                      | ✓                          |
+| PDF                       | ✓                          |
+| DOCX/ODT                  | ✓                          |
+| PowerPoint                | ✓                          |
+| сайт/блог                 | `distill`, `blogdown`      |
+| HTML-презентация          | `revealjs`                 |
+| книга                     | `bookdown`                 |
+| интерактивная презентация | `flexdashboard`            |
+
+## Что нового: модульный дизайн (1 из 4) {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Quarto позволяет разбивать анализ на маленькие, повторно используемые компоненты, которые можно собирать в сложные документы. Это делает повторное использование и комбинирование частей вашего анализа легким.
+
+Сложный проект на R может состоять из нескольких скриптов, содержащих загрузку и предобработку данных, специальные функции, моделирование и визуализацию. Quarto позволяет точно так же использовать файлы `.qmd`: собирать их в большие проекты, использовать вывод одной ячейки кода много раз.
+
+Пример: включить все объекты из файла `_data.qmd`
+
+```         
+{{< include _data.qmd >}}
+```
+
+## Что нового: модульный дизайн (2 из 4) {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Quarto позволяет использовать параметры, c которыми можно готовить разные отчеты из одного и того же документа, например:
+
+-   [отчеты для разных регионов]{}
+-   [отчеты для разных периодов]{}
+-   [моделирование с разными допущениями или алгоритмами]{}
+
+``` yaml
+---
+title : "Hello, Quarto"
+author: "otus.ru"
+…
+params:
+  job : "Бухгалтер"
+  area: "Москва"
+---
+```
+
+## Что нового: модульный дизайн (3 из 4) {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Значения параметров используются в качестве шаблона в коде документа, например:
+
+```{r params-example}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "3,4"
+df_meta <- open_dataset('data/db/meta', partitioning = 'job_id') |>
+  filter(
+    job == params$job,
+    area = params$area
+  )
+```
+
+Затем документ можно сверстать с разными параметрами из R или командной строки:
+
+```         
+quarto render doc.qmd -P job:"Бухгалтер" -P area:"Москва" --output doc.pdf
+```
+
+## Что нового: модульный дизайн (4 из 4) {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Некоторые преимущества модульных документов включают:
+
+1.  Повторное использование: можно повторно использовать те же ячейки в нескольких документах
+
+2.  Гибкость: можно повторно комбинировать ячейки разными способами для разных выводов или целей
+
+3.  Абстракция: скрывать детали реализации от читателей документа
+
+4.  Удобство поддержки: нужно вносить изменения только в одном месте
+
+## Что нового: расширенное форматирование {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Quarto изначально включает все необходимое для научных публикаций и [воспроизводимого анализа](https://habr.com/ru/articles/417469/):
+
+-   [обширную поддержку перекрестных ссылок и цитат]{}
+-   [расширенное аннотирование рисунков, таблиц и кода]{}
+-   [нативную поддержку графов и блок-схем (`mermaid` и `Graphviz`)]{}
+-   [расширенные возможности написания формул $\LaTeX$]{}
+
+## Пример 1: LaTeX {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+::: {.columns}
+::: {.column width="40%"}
+**Пример**: Запись матрицы (пакет `amsmath`)
+
+```
+$$A = \begin{pmatrix}
+    4&-3&-3\\
+    1&2&1  \\
+    1&1&2
+  \end{pmatrix}$$
+```
+
+:::
+
+::: {.column .output width="40%"}
+
+$$A = \begin{pmatrix}4&-3&-3\\1&2&1\\1&1&2\end{pmatrix}$$
+:::
+
+:::
+
+::: {.columns}
+::: {.column width="40%"}
+**Пример**: Запятая как десятичный разделитель (пакет `icomma`)
+
+```
+$$x = 1,11,\,
+  y = 2,18,\,
+  \pi = 3,141593\dots
+$$
+```
+
+:::
+
+::: {.column .output width="40%"}
+
+$$x = 1,11,\, \\
+  y = 2,18,\, \\
+  \pi = 3,141593\dots
+$$
+
+:::
+
+:::
