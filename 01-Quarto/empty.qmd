@@ -1,6 +1,16 @@
 ---
 title: "Untitled"
-format: html
+format:
+  html: 
+    code-block-bg: "#fef"
+    code-block-border-left: "#faf"
+    highlight-style: breeze
+    code-tools:
+      source: true
+      toggle: true
+      caption: none
+execute: 
+  echo: fenced
 ---
 
 ## Running Code
@@ -17,6 +27,12 @@ When you click the **Render** button a document will be generated that includes 
 
 hist(mtcars$mpg)
 hist(mtcars$disp)
+```
+
+```{{r}}
+#| label: ols-model
+
+ols <- lm(mpg ~ wt, data = mtcars)
 ```
 
 You can add options to executable code like this 

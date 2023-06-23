@@ -29,15 +29,16 @@ $presentation-line-height: 1.15;
 /*-- scss:rules --*/
 
 a {
+  color: #FF9900;
   text-decoration: underline !important;
 }
 
-ul > li
+li
 {
     color: #FF9900;
 }
 
-ul > li > span
+li > span
 {
     color: #111;
 }
