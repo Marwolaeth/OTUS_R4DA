@@ -13,5 +13,7 @@ crossref:
   fig-title: Рис.     # (default is "Figure")
   tbl-title: Таб.     # (default is "Table")
   subref-labels: arabic
+  fig-prefix: Рис.    # (default is "Figure")
+  tbl-prefix: Таблица # (default is "Table")
 ---
 

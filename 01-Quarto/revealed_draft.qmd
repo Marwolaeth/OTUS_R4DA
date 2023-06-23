@@ -296,10 +296,26 @@ format:
 - [общие;]{}
 - [формат-специфичные (записываются под `format: [ваш формат]:`).]{}
 
-. . .
-
 ::: {.notes}
 Для каждого из форматов существует до нескольких десятков опций. Полный список есть на [сайте Quarto](https://quarto.org/docs/reference/).
+:::
+
+## YAML-заголовки {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+К метаданным можно обращаться через синтаксис Quarto `{{…}}`:
+
+```yaml
+[{\{< meta author >}}]{style="font-family:Courier;font-size:3em;float:right;"}
+
+![Otus разбирается в R]({\{< meta format.revealjs.logo >}}){#fig-otus-r-owl}
+```
+
+[{{< meta author >}}]{style="font-family:Courier;font-size:3em;float:right;"}
+
+![Otus разбирается в R]({{< meta format.revealjs.logo >}}){#fig-otus-r-owl width=125}
+
+::: {.notes}
+Мне пришлось добавить обратную косую черту между первой парой фигурных скобок, потому что Quarto вычисляет значение своих переменных в любом окружении.
 :::
 
 ## Фрагменты кода {.smaller background-image="slides/slide.jpg" background-size="contain"}
@@ -375,8 +391,8 @@ execute:
 . . .
 
 ```markdown
-::: {style="border: 1px solid;"}
-Этот текст будет окружен прямоугольной рамкой
+::: {style="border: 1px solid;font-size:0.2em;"}
+Этот маленький текст будет окружен прямоугольной рамкой
 :::
 
 ::: {.callout-note}
@@ -384,8 +400,8 @@ execute:
 :::
 ```
 
-::: {style="border: 1px solid;"}
-Этот текст будет окружен прямоугольной рамкой
+::: {style="border: 1px solid;font-size:0.2em;"}
+Этот маленький текст будет окружен прямоугольной рамкой
 :::
 
 ::: {.callout-note}
@@ -413,21 +429,23 @@ execute:
 Синтаксис изображений похож на гиперссылки, но с восклицательным знаком в начале:
 
 ```markdown
-![Собачка](doge.png){height=2cm}
+![Собачка](doge.png "Изображение собаки"){height=2cm}
 ```
-![Собачка](slides/doge.png){height=2cm}
+![Собачка](slides/doge.png "Изображение собаки"){height=2cm}
 
 Надпись в квадратных скобках считается подписью к изображению. Ее можно оставить пустой.
+
+Текст в кавычках после url изображения – его всплывающее название (`<img … title=…>`)
 
 ## Форматирование изображений {.smaller background-image="slides/slide.jpg" background-size="contain"}
 
 Можно добавлять атрибуты, например, выравнивание:
 
 ```markdown
-![Собачка](doge.png){fig-align="left" fig-alt="Изображение собаки"}
+![Собачка](doge.png "Изображение собаки побольше"){fig-align="left" fig-alt="Изображение собаки"}
 ```
 
-![Собачка](slides/doge.png){width=200 fig-align="left" fig-alt="Изображение собаки"}
+![Собачка](slides/doge.png "Изображение собаки побольше"){width=200 fig-align="left" fig-alt="Изображение собаки"}
 
 ## Форматирование изображений {.smaller background-image="slides/slide.jpg" background-size="contain"}
 
@@ -436,9 +454,9 @@ execute:
 ```markdown
 ::: {#fig-two-triangles layout-ncol=2}
 
-![Первая картинка](tred.png){#fig-triangle-red}
+![Первая картинка](tred.png){#fig-triangle-red width=20}
 
-![Вторая картинка](tblue.png){#fig-triangle-blue}
+![Вторая картинка](tblue.png){#fig-triangle-blue width=20}
 
 Две картинки
 :::
@@ -489,6 +507,8 @@ execute:
 ## Форматирование изображений {.smaller background-image="slides/slide.jpg" background-size="contain"}
 
 Если назвать контейнер с изображениями `#fig-…`, Quarto представит его как одно изображение из нескольких частей (как на предыдущем слайде) и пронумерует соответсвенно.
+
+На изображения можно ссылаться: @fig-two-triangles
 
 Кстати, по умолчанию названия сопровождаются префиксом «Figure». Это можно изменить в настройках проекта:
 
