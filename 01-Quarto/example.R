@@ -1,3 +1,5 @@
+# DATA GENERATOR ----
+
 library(RcppEigen)
 library(microbenchmark)
 
@@ -44,3 +46,24 @@ bm_lm <- microbenchmark(
   control = list(warmup = 100L)
 )
 bm_lm
+
+
+# WEBSITE EXAMPLE ----
+library(arrow)
+library(dplyr)
+
+setwd('01-Quarto')
+(jobs <- open_dataset('data/db/meta', partitioning = 'job_id') |>
+    distinct(job) |> pull(as_vector = TRUE)
+)
+
+render_job_report <- function(job){
+  job_name = stringi::stri_trans_general(job, "ru-ru_Latn/BGN")
+  quarto::quarto_render(
+    input = "salaries.qmd",
+    execute_params = list(job = job),
+    output_file = glue::glue("{job_name}-report.html")
+  )
+}
+
+purrr::walk(jobs, render_job_report)
