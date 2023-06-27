@@ -294,24 +294,7 @@ format:
 При этом компоненты Shiny требуют хостинга на удаленном сервере. Компоненты, основанные на JavaScript, будут интерактивными у читателей без дополнительных сложностей.
 :::
 
-##  {#slide-q data-menu-title="Вопрос" background-image="slides/slide.jpg" background-size="contain"}
-
-[Интересно ваше мнение:]{.absolute top="90" left="52" style="color:#FF9900 !important;"}
-
-::: {.columns layout-valign="bottom"}
-::: {.column}
-![](slides/rules-ask){.absolute top="177" left="103"}
-
-![](slides/rules-ask){.absolute top="325" left="103"}
-:::
-
-::: {.column}
-
-[Какой формат вам кажется самым интересным для работы?]{.absolute top="177" left="278"}
-
-[Какой формат, по вашему мнению, вам больше всего пригодится в работе?]{.absolute top="325" left="278"}
-:::
-:::
+{{< include otus-question.qmd >}}
 
 # Элементы Quarto {background-image="slides/section.jpg" background-size="contain"}
 
@@ -605,13 +588,20 @@ hist(mtcars$disp)
 На этот раз изображения пронумерованы.
 :::
 
-## Интерактивные эелементы {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Интерактивные элементы {.smaller .scrollable background-image="slides/slide.jpg" background-size="contain"}
 
 Формат HTML и производные от него (как revealjs) позволяют добавлять в документ интерактивные элементы семейства `htmlwidgets`
 
+**Интерактивная диаграмма plotly:**
+
 ```{r}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Показать код"
 #| label: example-plotly
-#| fig-cap: ""
+#| fig-cap: "Диаграмма plotly"
+#| fig-alt: |
+#|   "Трехмерная диаграмма рассеивания в пространстве характеристик автомобилей из набора mtcars: ось x – вес; ось y – мощность (л.с.), ось z – скорость"
 library(plotly)
 library(dplyr)
 library(forcats)
@@ -630,3 +620,24 @@ plot_ly(
 ) |>
   add_markers()
 ```
+
+## Интерактивные элементы {.smaller .scrollable background-image="slides/slide.jpg" background-size="contain"}
+
+Формат HTML и производные от него (как revealjs) позволяют добавлять в документ интерактивные элементы семейства `htmlwidgets`
+
+**Интерактивная карта leaflet:**
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Показать код"
+#| label: example-leaflet
+#| fig-cap: "Карта leaflet"
+library(leaflet)
+
+leaflet() %>%
+  addTiles() %>%  # По умолчанию загружает карту OpenStreetMap, и норм 
+  addMarkers(lng=37.560826, lat=55.722685, popup="Я говорю с вами отсюда")
+```
+
+Комплексные публикации

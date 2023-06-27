@@ -1,0 +1,31 @@
+---
+format:
+    revealjs:
+      theme: ../tools/otus.scss
+      logo: slides/owls_R.png
+      incremental: true
+      width: 960
+      height: 540
+resource-path: 
+  - "../images"
+default-image-extension: "png"
+---
+
+##  {#slide-q data-menu-title="Вопрос" background-image="slides/slide.jpg" background-size="contain"}
+
+[Интересно ваше мнение:]{.absolute top="90" left="52" style="color:#FF9900 !important;"}
+
+::: {.columns layout-valign="bottom"}
+::: {.column}
+![](slides/rules-ask){.absolute top="177" left="103"}
+
+![](slides/rules-ask){.absolute top="325" left="103"}
+:::
+
+::: {.column}
+
+[Какой формат вам кажется самым интересным для работы?]{.absolute top="177" left="278"}
+
+[Какой формат, по вашему мнению, вам больше всего пригодится в работе?]{.absolute top="325" left="278"}
+:::
+:::
