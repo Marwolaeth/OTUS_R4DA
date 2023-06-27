@@ -38,7 +38,7 @@ author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
 
 [Тема вебинара]{.absolute top="48" left="53" style="color:#FF9900 !important;"}
 
-[{{< meta title >}}]{.absolute top="120" left="53" style="font-size:1.6em;"}
+[{{< meta subtitle >}}]{.absolute top="120" left="53" style="font-size:1.6em;"}
 
 [{{< meta author-name >}}]{.absolute top="284" left="323" style="font-size:0.9em;"}
 

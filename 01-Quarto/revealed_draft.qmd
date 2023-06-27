@@ -38,16 +38,16 @@ Quarto (отсылка к формату `in quarto`) -- система пуб
 ![](slides/posit2){width=300 alt="Логотип Posit"  title="Логотип Posit"}
 :::
 
-Quarto -- не библиотека R, а автономное приложение с интерфейсом командной строки. Например, вы можете:
+Quarto -- не библиотека R, а автономное приложение с интерфейсом командной строки. Например, даже без установленных R или Python вы можете:
 
-1. [Создать документ `document.qmd` в своем любимом редакторе.]{}
+1. [Создать документ `document.md` в своем любимом редакторе.]{}
 2. [Добавить YAML-метаданные (как Rmarkdown, но см. ниже).]{}
 3. [Сверстать документ в нужном вам формате.]{}
 
 . . .
 
 ```       
-quarto render document.qmd
+quarto render document.md
 ```
 
 ## Что за Quarto? {.smaller background-image="slides/slide.jpg" background-size="contain"}
@@ -183,6 +183,28 @@ $$A = \begin{pmatrix}4&-3&-3\\1&2&1\\1&1&2\end{pmatrix}$$
 
 :::
 
+## Что со всем этим делать? {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Quarto «из коробки» позволяет создавать более 40 форматов документов (`format: ваш-формат`).
+
+Для каждого формата доступны по нескольку десятков опций.
+
+Знание CSS/SASS, $\LaTeX$ или Pandoc дает почти безграничные возможности настройки внешнего вида отчетов.
+
+. . .
+
+<br>
+
+Так что, «читайте руководство»?
+
+. . .
+
+<br>
+
+Безусловно. Но сейчас вы получите карту для ориентации во вселенной Quarto.
+
+И сделаете по ней уверенные шаги.
+
 # Алгоритм работы {background-image="slides/section.jpg" background-size="contain"}
 
 ## Общий алгоритм проектов Quarto {.scrollable background-image="slides/slide.jpg" background-size="contain"}
@@ -270,6 +292,25 @@ format:
 Только формат HTML позволяет создавать интерактивные документы.
 
 При этом компоненты Shiny требуют хостинга на удаленном сервере. Компоненты, основанные на JavaScript, будут интерактивными у читателей без дополнительных сложностей.
+:::
+
+##  {#slide-q data-menu-title="Вопрос" background-image="slides/slide.jpg" background-size="contain"}
+
+[Интересно ваше мнение:]{.absolute top="90" left="52" style="color:#FF9900 !important;"}
+
+::: {.columns layout-valign="bottom"}
+::: {.column}
+![](slides/rules-ask){.absolute top="177" left="103"}
+
+![](slides/rules-ask){.absolute top="325" left="103"}
+:::
+
+::: {.column}
+
+[Какой формат вам кажется самым интересным для работы?]{.absolute top="177" left="278"}
+
+[Какой формат, по вашему мнению, вам больше всего пригодится в работе?]{.absolute top="325" left="278"}
+:::
 :::
 
 # Элементы Quarto {background-image="slides/section.jpg" background-size="contain"}
@@ -563,3 +604,29 @@ hist(mtcars$disp)
 ::: {.notes}
 На этот раз изображения пронумерованы.
 :::
+
+## Интерактивные эелементы {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Формат HTML и производные от него (как revealjs) позволяют добавлять в документ интерактивные элементы семейства `htmlwidgets`
+
+```{r}
+#| label: example-plotly
+#| fig-cap: ""
+library(plotly)
+library(dplyr)
+library(forcats)
+
+# Небольшая предобработка: сделаем категориальную переменную явно категориальной
+mtcars <- mtcars |>
+  mutate(am = fct_recode(as.character(am), 'Automatic' = '0', 'Manual' = '1'))
+
+plot_ly(
+  mtcars,
+  x = ~wt,
+  y = ~hp,
+  z = ~qsec,
+  color = ~am,
+  colors = c('#BF382A', '#0C4B8E')
+) |>
+  add_markers()
+```
