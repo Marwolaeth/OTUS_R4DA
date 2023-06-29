@@ -782,3 +782,137 @@ format:
 - [`sidebar` (боковая навигационная панель);]{}
 - [`page-footer` (подвал сайта);]{}
 - [`search` (поисковый виджет).]{}
+
+## Создание сайта в Quarto – Навигация {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Пример задания верхней навигационной панели:
+
+```yaml
+website:
+  <…>
+  # Верхняя панель («шапка»)
+  navbar:
+    title: "QuartoWebsite" # Переписывает website: title
+    logo: www/owls_R.png
+    logo-alt: "Otus: R for Data Analysis"
+    # Элементы слева
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+    # Элементы справа
+    right: 
+      - href: https://otus.ru
+        icon: mortarboard
+        target: _blank
+```
+
+## Создание сайта в Quarto – Навигация {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Пример задания боковой панели:
+
+```yaml
+website:
+  <…>
+  # Боковая панель (боковое меню):
+  sidebar:
+    background: dark  # Один из стандартных цветов текущей темы оформления
+    foreground: light # Еще один цвет темы. Они изменятся, если изменить тему
+    style: docked     # Прикреплена к своему краю
+    contents:
+      - section: "Первый раздел"
+        contents:
+          - entry-01.qmd
+          - entry-02.qmd
+      - section: "Второй раздел"
+        contents:
+          - entry-03.qmd
+          - entry-04.qmd
+```
+
+## Создание сайта в Quarto – Навигация {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Пример задания нижней панели (подвала):
+
+```yaml
+website:
+  <…>
+  # Подвал
+  page-footer:
+    background: primary  # «Ведущий» цвет выбранной темы оформления
+    foreground: "#eee"
+    # Элементы посередине (также можно указать right и left):
+    center: 
+      - about.qmd
+```
+
+## Создание сайта в Quarto – Рендеринг {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Для предпросмотра нашего сайта находим:
+
+1. [Меню проекта]{}
+2. [Вкладку `Build`]{}
+3. [Кнопку `Render Website`]{}
+
+![](slides/website-03-render.jpg)
+
+## Создание сайта в Quarto – Публикация {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Помимо собственного сервера, опубликовать сайт можно на [Quarto Pub](https://quartopub.com/), [Posit Connect](https://posit.co/products/enterprise/connect/), [GitHub Pages](https://pages.github.com/), [Netlify](https://www.netlify.com/) и некоторых других платформах.
+
+. . .
+
+Например, если мы назовем проект <u>и репозиторий на GitHub</u> `username.github.io`, где `username` – наше имя на GitHub, мы создадим свой персональный сайт на GitHub Pages.
+
+Если мы назовем проект и репозиторий `name`, где `name` – любое название, мы создадим сайт по адресу `username/github.io/name`.
+
+## Создание сайта в Quarto – Публикация {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Рассмотрим публикацию на GitHub Pages:
+
+1. [Прописываем, что папка с сайтом должна называться “docs” (по умолчанию “_site”)]{}
+
+. . .
+
+```yaml
+project:
+  type: website
+  output-dir: docs
+```
+
+2. [Заходим в свой аккаунт на GitHub и создаем пустой репозиторий (без README)]{}
+3. [Связываем свой локальный проект с репозиторием:]{}
+
+. . .
+
+```powershell
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/username/name.git
+git push -u origin main
+```
+
+## Создание сайта в Quarto – Публикация {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+4. [В настройках репозитория в меню Pages разрешаем развертывание на Pages: выбираем ветку и папку (@fig-github-pages)]{}
+
+. . .
+
+![Настройка отображения на GitHub Pages](slides/github-pages){#fig-github-pages height=11em}
+
+# Рефлексия {background-image="slides/section.jpg" background-size="contain"}
+
+## Рефлексия {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+[Спросите себя. Расскажите в чате или голосом:]{.absolute top="90" left="52" style="color:#FF9900 !important;"}
+
+::: {.absolute top="180" left="52"}
+1. [Хотите ли вы применять Quarto в своей работе?]{}
+2. [Считаете ли вы, что это сложно?]{}
+3. [О каких еще возможностях системы вы хотите узнать?]{}
+4. [Какой проект вам хочется оформить в Quarto первым? В каком формате вы бы его сверстали?]{}
+:::
+
+{{< include bye.qmd >}}

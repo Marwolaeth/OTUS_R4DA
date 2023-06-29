@@ -1,0 +1,12 @@
+---
+format:
+    revealjs:
+      theme: ../tools/otus.scss
+      logo: slides/owls_R.png
+      incremental: true
+      width: 960
+      height: 540
+default-image-extension: "png"
+---
+
+#  {#slide-bye data-menu-title="Спасибо!" background-image="slides/owl-bye.png" background-size="contain"}
