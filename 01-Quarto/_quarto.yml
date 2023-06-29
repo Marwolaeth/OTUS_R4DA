@@ -1,7 +1,0 @@
-project: 
-  title: Jobs
-  type: website
-website: 
-  title: 'Зарплаты в Москве'
-  sidebar:
-    contents: "*_report.html"
