@@ -221,6 +221,7 @@ flowchart LR
   
   classDef optional stroke-dasharray:10;
   class D optional
+  class E optional
 ```
 
 . . .
@@ -241,6 +242,7 @@ flowchart LR
   
   classDef optional stroke-dasharray:10;
   class D optional
+  class E optional
 ```
 
 ## Как работает Quarto {background-image="slides/slide.jpg" background-size="contain"}
@@ -294,6 +296,65 @@ format:
 При этом компоненты Shiny требуют хостинга на удаленном сервере. Компоненты, основанные на JavaScript, будут интерактивными у читателей без дополнительных сложностей.
 :::
 
+## Пример настройки: HTML {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Опции HTML позволяют настраивать макет страницы, базовые элементы стиля и многое другое.
+
+```yaml
+---
+format:
+  html:
+    theme:
+      light: pulse
+      dark: cyborg
+    css: styles.css
+    mainfont: corbel
+    fontsize: 1.1rem
+    fontcolor: "#090103"
+    linkcolor: "#E81444"
+    monofont: consolas
+    title-block-style: plain
+    title-block-banner: "#DDBEED"
+    title-block-banner-color: "#AA26EE"
+    margin-top: 40px
+---
+```
+
+Готовые темы Quarto представлены на сайте [Bootswatch](https://bootswatch.com/){target="_blank"}.
+
+::: {.notes}
+Внешний вид большинства элементов, шрифты и цвета можно настроить в YAML-заголовках. Все остальное можно прописать во внешнем css-файле.
+:::
+
+## Пример настройки: PDF {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+В PDF тоже можно настраивать макет (и размер) страницы, базовые элементы стиля, а также добавлять файлы $\TeX$ для более тонкой настройки.
+
+```yaml
+---
+format:
+  pdf:
+    mainfont: Georgia
+    monofont: Consolas
+    linkcolor: Bittersweet
+    citecolor: Mahogany
+    urlcolor: MediumOrchid
+    papersize: A5
+    fig-format: png
+    include-in-header:
+      - text: |
+          \usepackage[english,russian]{babel}
+          \usepackage{fontspec}
+          \setsansfont{Courier New}
+          \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+          \usepackage{icomma}
+---
+```
+
+::: {.notes}
+Вместо `text` можно передать на включение файл `.tex` с загрузкой библиотек, шрифтами и определениями собственных функций. В силу того, что TeX далеко не всегда дружит с кириллическими текстами, я советую иметь под рукой TeX-код Данила Федоровых: https://ru.overleaf.com/latex/templates/5-dot-2-2-russkii-iazyk-v-latex-xelatex/skfzmvgdgvnk.
+:::
+
 {{< include otus-question.qmd >}}
 
 # Элементы Quarto {background-image="slides/section.jpg" background-size="contain"}
@@ -315,12 +376,12 @@ format:
 ---
 ```
 
+::: {.notes}
 Опции Quarto делятся на:
 
-- [общие;]{}
-- [формат-специфичные (записываются под `format: [ваш формат]:`).]{}
+- общие;
+- формат-специфичные (записываются под `format: [ваш формат]:`.
 
-::: {.notes}
 Для каждого из форматов существует до нескольких десятков опций. Полный список есть на [сайте Quarto](https://quarto.org/docs/reference/).
 :::
 
@@ -334,7 +395,11 @@ format:
 ![Otus разбирается в R]({\{< meta format.revealjs.logo >}}){#fig-otus-r-owl}
 ```
 
+. . .
+
 [{{< meta author >}}]{style="font-family:Courier;font-size:3em;float:right;"}
+
+. . .
 
 ![Otus разбирается в R]({{< meta format.revealjs.logo >}}){#fig-otus-r-owl width=125}
 
@@ -556,7 +621,7 @@ crossref:
 #| fig-subcap: 
 #|   - "Первая диаграмма"
 #|   - "Вторая диаграмма"
-#| layout: [20, 10]
+#| layout: "[20, 10]"
 #| fig-width: 50
 
 hist(mtcars$mpg)
@@ -579,7 +644,7 @@ hist(mtcars$disp)
 #|   - "Первая диаграмма"
 #|   - "Вторая диаграмма"
 #| fig-width: 50
-#| layout: [10, 10]
+#| layout: "[10, 10]"
 hist(mtcars$mpg)
 hist(mtcars$disp)
 ```
@@ -637,7 +702,83 @@ library(leaflet)
 
 leaflet() %>%
   addTiles() %>%  # По умолчанию загружает карту OpenStreetMap, и норм 
-  addMarkers(lng=37.560826, lat=55.722685, popup="Я говорю с вами отсюда")
+  addMarkers(lng=37.560826, lat=55.722685, popup="Я разговариваю с вами отсюда")
 ```
 
-Комплексные публикации
+# Комплексные публикации {background-image="slides/section.jpg" background-size="contain"}
+
+## Сайты, блоги, книги {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Quarto содержит нативную поддержку создания комплексных публикаций:
+
+- [сайты;]{}
+- [блоги;]{}
+- [книги.]{}
+
+. . .
+
+Любой сайт, блог или книга состоит из основных элементов:
+
+- [метаданные проекта;]{}
+- [контент (файлы `.qmd`);]{}
+- [элементы навигации (содержание, меню, вкладки, поиск и т. п.);]{}
+- [ресурсы (изображения, темы, скрипты и т. п.).]{}
+
+## Создание сайта в Quarto – Заготовка {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Проще всего создать сайт, блог или книгу как проект RStudio:
+
+. . .
+
+::: {.columns style="valign:bottom;"}
+::: {.column}
+![](slides/website-01-project.jpg){fig-height=100}
+
+Выбираем Quarto…
+:::
+::: {.column}
+::::: {.fragment}
+![](slides/website-02-files.jpg){fig-height=100}
+
+RStudio создает для нас необходимые файлы и пару файлов для примера
+:::::
+:::
+:::
+
+## Создание сайта в Quarto – Метаданные {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Информация о проекте, в том числе ссылки на контент,  описание структуры и общий стиль, содержится в файле `_quarto.yml`:
+
+. . .
+
+```yaml
+---
+project:
+  type: website
+
+website:
+  title: "quartosite"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme:
+      light: united
+      dark: vapor
+    css: styles.css
+    toc: true
+---
+```
+
+## Создание сайта в Quarto – Навигация {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+В Quarto можно легко создать следующие элементы навигации:
+
+- [`navbar` (навигационная панель сверху);]{}
+- [`sidebar` (боковая навигационная панель);]{}
+- [`page-footer` (подвал сайта);]{}
+- [`search` (поисковый виджет).]{}

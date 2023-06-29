@@ -6,25 +6,46 @@ format:
     theme:
       light: pulse
       dark: cyborg
+    css: styles.css
+    mainfont: corbel
+    fontsize: 1.1rem
+    fontcolor: "#090103"
+    linkcolor: "#E81444"
+    monofont: consolas
+    title-block-style: plain
+    title-block-banner: "#DDBEED"
+    title-block-banner-color: "#AA26EE"
+    margin-top: 40px
   pdf:
+    mainfont: Georgia
     monofont: Consolas
+    linkcolor: Bittersweet
+    citecolor: Mahogany
+    urlcolor: MediumOrchid
+    papersize: A5
     fig-format: png
     include-in-header:
       - text: |
           \usepackage[english,russian]{babel}
           \usepackage{fontspec}
           \defaultfontfeatures{Ligatures={TeX},Renderer=Basic}
-          \setmainfont[Ligatures={TeX,Historic}]{Georgia}
+          % \setmainfont[Ligatures={TeX,Historic}]{Georgia}
           \setsansfont{Courier New}
-          \setmonofont{Courier New}
+          % \setmonofont{Courier New}
           \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
           \usepackage{icomma}
 params:
   job: "Бухгалтер"
+crossref:
+  fig-title: Рис.
+  tbl-title: Таблица
+  fig-prefix: Рис.
+  tbl-prefix: Таблице
 execute: 
   warning: false
   echo: false
   include: false
+keywords: [r, data analysis, quarto, markdown, pdf]
 ---
 
 ```{r packages}
@@ -59,24 +80,28 @@ df_text_all <- open_dataset('data/db/text', partitioning = 'job_id')
 
 ## О наборе данных
 
+::: {.bordered}
 В нашем распоряжении находится подборка объявлений о вакантных рабочих местах с сайта [HeadHunter](https://hh.ru/){target="_blank"} по запросу «`r params$job`».
+:::
 
 ## Распределение заработных плат
 
 ```{r salary-summary}
 #| include: true
+#| label: tbl-salary-summary
+#| tbl-cap: Основные характеристики распределения заработных плат
 salary_summary <- df_meta |>
   summarise(
     across(
       salary,
       .fns = list(
-        min = min,
-        Q1 = ~quantile(., .25),
-        median = median,
-        Q3 = ~quantile(., .75),
-        max = max,
-        mean = mean,
-        sd = sd
+        `Мин.`    = min,
+        `I кв.`   = ~quantile(., .25),
+        `Медиана` = median,
+        `III кв.` = ~quantile(., .75),
+        `Макс.`   = max,
+        `Среднее` = mean,
+        `СКО`     = sd
       ),
       .names = '{.fn}'
     )
@@ -89,12 +114,14 @@ knitr::kable(
 )
 ```
 
-Средняя предлагаемая заработная плата по запросу «`r params$job`» составляет `r format_int_rus(pull(salary_summary, mean, as_vector = TRUE))` ₽, медианное значение составляет `r format_int_rus(pull(salary_summary, median, as_vector = TRUE))` ₽.
+Средняя предлагаемая заработная плата по запросу «`r params$job`» составляет `r format_int_rus(pull(salary_summary, "Среднее", as_vector = TRUE))` ₽, медианное значение составляет `r format_int_rus(pull(salary_summary, "Медиана", as_vector = TRUE))` ₽. Основные характеристики выборки заработных плат приводятся в @tbl-salary-summary
 
-Эмпирическое распределение заработных плат выглядит следующим образом:
+Эмпирическое распределение заработных плат графически отображено на @fig-salary-histogram
 
 ```{r salary-histogram}
 #| include: true
+#| label: fig-salary-histogram
+#| fig-cap: Выборочная плотность распределения заработных плат
 df_meta |>
   to_duckdb() |>
   ggplot(aes(x = salary)) +
@@ -119,10 +146,12 @@ result_h0 <- ifelse(
 )
 ```
 
-Размер заработной платы `r result_dependency` от требуемого опыта работы. Гипотеза об отсутствии тренда `r result_h0` по критерию Джонкхира на уровне значимости 95%.
+Размер заработной платы `r result_dependency` от требуемого опыта работы (@fig-experience-plot). Гипотеза об отсутствии тренда `r result_h0` по критерию Джонкхира на уровне значимости 95%.
 
 ```{r experience-plot}
 #| include: true
+#| label: fig-experience-plot
+#| fig-cap: Распределение заработных плат в зависимости от требуемого опыта
 df_meta |>
   # Ни Arrow, ни DuckDB не умеют работать с упорядоченными факторами
   collect() |>
