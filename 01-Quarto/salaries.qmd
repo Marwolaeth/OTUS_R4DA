@@ -7,6 +7,7 @@ format:
       light: pulse
       dark: cyborg
     css: styles.css
+    page-layout: article
     mainfont: corbel
     fontsize: 1.1rem
     fontcolor: "#090103"
