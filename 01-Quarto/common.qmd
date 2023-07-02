@@ -12,6 +12,7 @@ resource-path:
 default-image-extension: "png"
 author-name: Андрей Павлюченко
 author-role: Старший медиааналитик
+author-image: slides/apawluczenko
 author-job : "Мониторинг и исследования медиа (Brand Analytics, Медиалогия, R, Python)"
 author-likes: "Люблю делать: Text Mining, графовый анализ, интерактивные дэшборды"
 author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
@@ -43,7 +44,7 @@ author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
 
 [{{< meta author-name >}}]{.absolute top="284" left="323" style="font-size:0.9em;"}
 
-![](slides/or){.absolute top="284" left="66" height="208"} ![](slides/author){.absolute top="310" left="112" height="156"}
+![](slides/or){.absolute top="284" left="66" height="208"} ![]({{< meta author-image >}}){.absolute top="310" left="112" height="156"}
 
 ::: {.absolute top="332" left="323" style="font-size:0.4em;"}
 {{< meta author-role >}}
