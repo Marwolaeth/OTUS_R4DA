@@ -451,7 +451,7 @@ format:
 
 ## YAML-заголовки {.smaller background-image="slides/slide.jpg" background-size="contain"}
 
-YAML («**Y**AML **A**in't **M**arkup **L**anguage») – язык сериализации данных, как JSON и XML. Используется Quarto для записи конфигурации проекта (как в R и Julia). Формат записи – `опция: значение`.
+YAML («**Y**AML **A**in't **M**arkup **L**anguage») – язык сериализации данных, как JSON и XML. Используется Quarto для записи конфигурации проекта. Формат записи – `опция: значение`.
 
 Код конфигурации YAML отделяется тремя дефисами сверху и снизу:
 
