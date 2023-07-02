@@ -15,6 +15,7 @@ format:
       height: 540
       transition: convex
       mermaid-format: png
+      embed-resources: true
 resource-path: 
   - "/slides"
 default-image-extension: "png"
@@ -132,7 +133,7 @@ Quarto позволяет разбивать анализ на маленьки�
 Пример: включить все объекты из файла `_data.qmd`
 
 ``` markdowm
-{{< include _data.qmd >}}
+{\{< include _data.qmd >}}
 ```
 
 ## Что нового: модульный дизайн {.smaller background-image="slides/slide.jpg" background-size="contain"}
@@ -165,8 +166,8 @@ params:
 #| code-line-numbers: "3,4"
 df_meta <- open_dataset('data/db/meta', partitioning = 'job_id') |>
   filter(
-    job == params$job,
-    area = params$area
+    job  == params$job,
+    area == params$area
   )
 ```
 
@@ -386,67 +387,6 @@ format:
       - file: packages.tex
 ```
 
-## Пример настройки: HTML {.smaller background-image="slides/slide.jpg" background-size="contain"}
-
-Опции HTML позволяют настраивать макет страницы, базовые элементы стиля и многое другое.
-
-```yaml
----
-format:
-  html:
-    theme:
-      light: pulse
-      dark: cyborg
-    css: styles.css
-    mainfont: corbel
-    fontsize: 1.1rem
-    fontcolor: "#090103"
-    linkcolor: "#E81444"
-    monofont: consolas
-    title-block-style: plain
-    title-block-banner: "#DDBEED"
-    title-block-banner-color: "#AA26EE"
-    margin-top: 40px
----
-```
-
-Готовые темы Quarto представлены на сайте [Bootswatch](https://bootswatch.com/){target="_blank"}.
-
-::: {.notes}
-Внешний вид большинства элементов, шрифты и цвета можно настроить в YAML-заголовках. Все остальное можно прописать во внешнем css-файле.
-:::
-
-## Пример настройки: PDF {.smaller background-image="slides/slide.jpg" background-size="contain"}
-
-В PDF тоже можно настраивать макет (и размер) страницы, базовые элементы стиля, а также добавлять файлы $\TeX$ для более тонкой настройки.
-
-```yaml
----
-format:
-  pdf:
-    mainfont: Georgia
-    monofont: Consolas
-    linkcolor: Bittersweet
-    citecolor: Mahogany
-    urlcolor: MediumOrchid
-    papersize: A5
-    fig-format: png
-    include-in-header:
-      - text: |
-          \usepackage[english,russian]{babel}
-          \usepackage{fontspec}
-          \setsansfont{Courier New}
-          \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
-          \usepackage{icomma}
----
-```
-
-::: {.notes}
-Вместо `text` можно передать на включение файл `.tex` с загрузкой библиотек, шрифтами и определениями собственных функций. В силу того, что TeX далеко не всегда дружит с кириллическими текстами, я советую иметь под рукой TeX-код Данила Федоровых: https://ru.overleaf.com/latex/templates/5-dot-2-2-russkii-iazyk-v-latex-xelatex/skfzmvgdgvnk.
-:::
-
-{{< include otus-question.qmd >}}
-
 # Кастомизация проекта: элементы Quarto {background-image="slides/section.jpg" background-size="contain"}
 
 ## YAML-заголовки {.smaller background-image="slides/slide.jpg" background-size="contain"}
@@ -513,7 +453,7 @@ format:
 :::
 
 ::: {.notes}
-В качестве примера многострочного текста в опциях я решил привести реальный заголовок из чужого проекта. Собственно, мы уже сталкивались с многострочным текстом в качестве значения yaml-опции мы уже сталкивались выше. Да, в большинстве случаев такие опции используются для передачи TeX-скриптов. В этом примере это javascript, но если присмотреться, речь все равно идет о TeX. Капризный TeX, который часто нужно настраивать.
+В качестве примера многострочного текста в опциях я решил привести реальный заголовок из чужого проекта. Да, в большинстве случаев такие опции используются для передачи TeX-скриптов, пример чего мы еще увидим ниже. В данном примере используется javascript, но если присмотреться, речь все равно идет о TeX. Капризный TeX, который часто нужно настраивать.
 :::
 
 ## YAML-заголовки {.smaller background-image="slides/slide.jpg" background-size="contain"}
@@ -537,6 +477,67 @@ format:
 ::: {.notes}
 Мне пришлось добавить обратную косую черту между первой парой фигурных скобок, потому что Quarto вычисляет значение своих переменных в любом окружении.
 :::
+
+## Пример настройки: HTML {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+Опции HTML позволяют настраивать макет страницы, базовые элементы стиля и многое другое.
+
+```yaml
+---
+format:
+  html:
+    theme:
+      light: pulse
+      dark: cyborg
+    css: styles.css
+    mainfont: corbel
+    fontsize: 1.1rem
+    fontcolor: "#090103"
+    linkcolor: "#E81444"
+    monofont: consolas
+    title-block-style: plain
+    title-block-banner: "#DDBEED"
+    title-block-banner-color: "#AA26EE"
+    margin-top: 40px
+---
+```
+
+Готовые темы Quarto представлены на сайте [Bootswatch](https://bootswatch.com/){target="_blank"}.
+
+::: {.notes}
+Внешний вид большинства элементов, шрифты и цвета можно настроить в YAML-заголовках. Все остальное можно прописать во внешнем css-файле.
+:::
+
+## Пример настройки: PDF {.smaller background-image="slides/slide.jpg" background-size="contain"}
+
+В PDF тоже можно настраивать макет (и размер) страницы, базовые элементы стиля, а также добавлять файлы $\TeX$ для более тонкой настройки.
+
+```yaml
+---
+format:
+  pdf:
+    mainfont: Georgia
+    monofont: Consolas
+    linkcolor: Bittersweet
+    citecolor: Mahogany
+    urlcolor: MediumOrchid
+    papersize: A5
+    fig-format: png
+    include-in-header:
+      - text: |
+          \usepackage[english,russian]{babel}
+          \usepackage{fontspec}
+          \setsansfont{Courier New}
+          \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+          \usepackage{icomma}
+---
+```
+
+::: {.notes}
+Вместо `text` можно передать на включение файл `.tex` с загрузкой библиотек, шрифтами и определениями собственных функций. В силу того, что TeX далеко не всегда дружит с кириллическими текстами, я советую иметь под рукой TeX-код Данила Федоровых: https://ru.overleaf.com/latex/templates/5-dot-2-2-russkii-iazyk-v-latex-xelatex/skfzmvgdgvnk.
+:::
+
+{{< include otus-question.qmd >}}
 
 ## Фрагменты кода {.smaller background-image="slides/slide.jpg" background-size="contain"}
 
