@@ -28,12 +28,7 @@ format:
     include-in-header:
       - text: |
           \usepackage[english,russian]{babel}
-          \usepackage{fontspec}
-          \defaultfontfeatures{Ligatures={TeX},Renderer=Basic}
-          % \setmainfont[Ligatures={TeX,Historic}]{Georgia}
           \setsansfont{Courier New}
-          % \setmonofont{Courier New}
-          \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
           \usepackage{icomma}
 params:
   job: Бухгалтер

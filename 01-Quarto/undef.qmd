@@ -1,0 +1,6 @@
+---
+params:
+  job: Менеджер по продажам
+---
+
+{{< include salaries.qmd >}}
