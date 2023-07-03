@@ -3,13 +3,13 @@ title: "Язык R для анализа данных"
 subtitle: "Утилита формирования отчётов Quarto"
 author  : "otus.ru"
 title-slide-attributes:
-  data-background-image: slides/title.jpg
+  data-background-image: images/title.jpg
   data-background-size: contain
 # date    : 2023-06-13
 format:
     revealjs:
       theme: ../tools/otus.scss
-      logo: slides/owls_R.png
+      logo: images/owls_R.png
       incremental: true
       width: 960
       height: 540
@@ -22,7 +22,7 @@ resource-path:
 default-image-extension: "png"
 author-name: Андрей Павлюченко
 author-role: Старший медиааналитик
-author-image: slides/apawluczenko
+author-image: images/apawluczenko
 author-job : "Мониторинг и исследования медиа (Brand Analytics, Медиалогия, R, Python)"
 author-likes: "Люблю делать: Text Mining, графовый анализ, интерактивные дэшборды"
 author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"

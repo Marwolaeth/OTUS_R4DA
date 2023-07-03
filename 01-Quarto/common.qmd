@@ -2,25 +2,23 @@
 format:
     revealjs:
       theme: ../tools/otus.scss
-      logo: slides/owls_R.png
+      logo: images/owls_R.png
       incremental: true
       width: 960
       height: 540
       mermaid-format: png
-resource-path: 
-  - "../images"
 default-image-extension: "png"
 author-name: Андрей Павлюченко
 author-role: Старший медиааналитик
-author-image: slides/apawluczenko
+author-image: images/apawluczenko
 author-job : "Мониторинг и исследования медиа (Brand Analytics, Медиалогия, R, Python)"
 author-likes: "Люблю делать: Text Mining, графовый анализ, интерактивные дэшборды"
 author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
 ---
 
-##  {#slide-rec data-menu-title="Запись" background-image="slides/slide.jpg" background-size="contain"}
+##  {#slide-rec data-menu-title="Запись" background-image="images/slide.jpg" background-size="contain"}
 
-![](slides/rec){.absolute top="15" left="91" width="67"}
+![](images/rec){.absolute top="15" left="91" width="67"}
 
 [**Проверить, идет ли запись**]{.absolute top="20" left="171"}
 
@@ -28,7 +26,7 @@ author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
 
 ::: {.columns layout-valign="bottom"}
 ::: {.column width="10%"}
-![](slides/plus){.absolute top="370" left="91" width="55" height="55"}
+![](images/plus){.absolute top="370" left="91" width="55" height="55"}
 :::
 
 ::: {.column width="90%"}
@@ -36,7 +34,7 @@ author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
 :::
 :::
 
-##  {#slide-intro data-menu-title="О вебинаре" background-image="slides/slide.jpg" background-size="contain"}
+##  {#slide-intro data-menu-title="О вебинаре" background-image="images/slide.jpg" background-size="contain"}
 
 [Тема вебинара]{.absolute top="48" left="53" style="color:#FF9900 !important;"}
 
@@ -44,7 +42,7 @@ author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
 
 [{{< meta author-name >}}]{.absolute top="284" left="323" style="font-size:0.9em;"}
 
-![](slides/or){.absolute top="284" left="66" height="208"} ![]({{< meta author-image >}}){.absolute top="310" left="112" height="156"}
+![](images/or){.absolute top="284" left="66" height="208"} ![]({{< meta author-image >}}){.absolute top="310" left="112" height="156"}
 
 ::: {.absolute top="332" left="323" style="font-size:0.4em;"}
 {{< meta author-role >}}
@@ -58,19 +56,19 @@ author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
 {{< meta author-contact >}}
 :::
 
-## Правила вебинара {background-image="slides/slide.jpg" background-size="contain"}
+## Правила вебинара {background-image="images/slide.jpg" background-size="contain"}
 
 ::: {.columns .absolute left=88 style="font-size:0.85em;"}
 ::: {.column width="20%"}
-![](slides/rules-active){.center-big}
+![](images/rules-active){.center-big}
 
-![](slides/rules-offtop){.center-big}
+![](images/rules-offtop){.center-big}
 
-![](slides/rules-ask){.center-big}
+![](images/rules-ask){.center-big}
 
-![](slides/rules-presense){.center-big}
+![](images/rules-presense){.center-big}
 
-![](slides/rules-delay){.center-big}
+![](images/rules-delay){.center-big}
 :::
 
 ::: {.column style="margin:0!important;"}
@@ -89,7 +87,7 @@ author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
 :::
 :::
 
-## Маршрут вебинара {background-image="slides/slide.jpg" background-size="contain"}
+## Маршрут вебинара {background-image="images/slide.jpg" background-size="contain"}
 
 ```{mermaid webinar-route}
 %%| fig-align: left
@@ -116,7 +114,7 @@ flowchart TD
   linkStyle default fill:none,stroke-dasharray:10,stroke:grey;
 ```
 
-## Цели вебинара {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Цели вебинара {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 [К концу вебинара вы сможете:]{style="color:#FF9900 !important;"}
 
@@ -126,7 +124,11 @@ flowchart TD
 4. [Использовать возможности модульного и параметрического дизайна Quarto.]{}
 5. [Использовать свои знания и документацию Quarto для создания продвинутых документов.]{}
 
-## Смысл {.smaller background-image="slides/slide.jpg" background-size="contain"}
+::: {.notes}
+На прошлом занятии вы уже научились создавать Rmarkdown-документы, которые затем `pandoc` рендерит в разные форматы. Эти знания и умения – основа того, что вы будете делать с Quarto. Но ребята из Posit долго втайне делали-делали Quarto и наделали столько, что возможностей системы хватило бы на целый курс. Поэтому на данном занятии
+:::
+
+## Смысл {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 [Зачем это нужно? Для того, чтобы:]{style="color:#FF9900 !important;"}
 

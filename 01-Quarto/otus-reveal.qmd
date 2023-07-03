@@ -3,25 +3,23 @@ title: "Язык R для анализа данных"
 subtitle: "Утилита формирования отчётов Quarto"
 author  : "otus.ru"
 title-slide-attributes:
-  data-background-image: slides/title.jpg
+  data-background-image: images/title.jpg
   data-background-size: contain
 # date    : 2023-06-13
 format:
     revealjs:
       theme: ../tools/otus.scss
-      logo: slides/owls_R.png
+      logo: images/owls_R.png
       incremental: true
       width: 960
       height: 540
       transition: convex
       mermaid-format: png
       embed-resources: true
-resource-path: 
-  - "/slides"
 default-image-extension: "png"
 author-name: Андрей Павлюченко
 author-role: Старший медиааналитик
-author-image: slides/apawluczenko
+author-image: images/apawluczenko
 author-job : "Мониторинг и исследования медиа (Brand Analytics, Медиалогия, R, Python)"
 author-likes: "Люблю делать: Text Mining, графовый анализ, интерактивные дэшборды"
 author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
@@ -29,14 +27,14 @@ author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
 
 {{< include common.qmd >}}
 
-# Знакомство с Quarto {background-image="slides/section.jpg" background-size="contain"}
+# Знакомство с Quarto {background-image="images/section.jpg" background-size="contain"}
 
-## Что за Quarto? {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Что за Quarto? {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 ::: {.columns}
 
 :::::: {.column}
-![](slides/quarto-hamlet-1.jpeg){fig-alt="Старая книга «Гамлет» in quarto" fig-title="Старая книга «Гамлет» in quarto" height="13em"}
+![](images/quarto-hamlet-1.jpeg){fig-alt="Старая книга «Гамлет» in quarto" fig-title="Старая книга «Гамлет» in quarto" height="13em"}
 
 [Источник: Tom Mock на [GitHub](https://github.com/jthomasmock/quarto-training){target="_blank"}]{style="font-size:0.7em;color:grey;"}
 ::::::
@@ -45,14 +43,14 @@ author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
 Quarto (отсылка к формату `in quarto`) -- система публикации документов от Posit (бывшая RStudio, создатели `Tidyverse`).
 
 ::: {layout-ncol=2}
-![](slides/quarto){width=125 alt="Логотип Quarto" title="Логотип Quarto"}
+![](images/quarto){width=125 alt="Логотип Quarto" title="Логотип Quarto"}
 
-![](slides/posit2){width=125 alt="Логотип Posit"  title="Логотип Posit"}
+![](images/posit2){width=125 alt="Логотип Posit"  title="Логотип Posit"}
 :::
 ::::::
 :::
 
-## Что за Quarto? {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Что за Quarto? {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Quarto -- не библиотека R, а автономное приложение с интерфейсом командной строки. Например, даже без установленных R или Python вы можете:
 
@@ -73,7 +71,7 @@ quarto render document.md
 Сейчас мы посмотрим на особенности и возможности Quarto. Коллеги, я вас попрошу, даже настаиваю на этом: то, что мы будем обсуждать – возможности системы, форматы и настройки – примеряйте на себя. Представляйте себе, что бы вы могли написать на Quarto, какой свой проект реализовать, для какой аудитории, и что вам для этого нужно узнать.
 :::
 
-## Что за Quarto? {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Что за Quarto? {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 RStudio IDE новых версий включает Quarto, а также предоставляет для него редактор кода с автозаполнением и удобный визуальный редактор.
 
@@ -95,7 +93,7 @@ Dreamwever, как вы, возможно, знаете — тоже прогр�
 **Важно:** по словам разработчиков Posit Quarto призван заменить Rmarkdown. Rmarkdown будет поддерживаться, но не разрабатываться. То есть они будут фиксить ошибки Rmarkdown, но разработка новых «фич» ведется исключительно в рамках Quarto.
 :::
 
-## Что нового: не только R {background-image="slides/slide.jpg" background-size="contain"}
+## Что нового: не только R {background-image="images/slide.jpg" background-size="contain"}
 
 Quarto умеет обрабатывать код на следующих языках:
 
@@ -104,9 +102,9 @@ Quarto умеет обрабатывать код на следующих яз�
 -   [Julia;]{}
 -   [JavaScript (Observable).]{}
 
-![](slides/languages)
+![](images/languages)
 
-## Что нового: многоформатность {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Что нового: многоформатность {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 ::: {style="font-size:0.8em;"}
 Quarto поддерживает множество форматов вывода, включая HTML, PDF, EPUB и другие. В Rmarkdown для большинства этих форматов необходимы дополнительные библиотеки:
@@ -124,7 +122,7 @@ Quarto поддерживает множество форматов вывода
 :::
 
 
-## Что нового: модульный дизайн {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Что нового: модульный дизайн {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Quarto позволяет разбивать анализ на маленькие, повторно используемые компоненты, которые можно собирать в сложные документы. Это делает повторное использование и комбинирование частей вашего анализа легким.
 
@@ -136,7 +134,7 @@ Quarto позволяет разбивать анализ на маленьки�
 {\{< include _data.qmd >}}
 ```
 
-## Что нового: модульный дизайн {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Что нового: модульный дизайн {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Quarto позволяет использовать параметры, c которыми можно готовить разные отчеты из одного и того же документа, например:
 
@@ -156,7 +154,7 @@ params:
 ---
 ```
 
-## Что нового: модульный дизайн {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Что нового: модульный дизайн {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Значения параметров используются в качестве шаблона в коде документа, например:
 
@@ -180,7 +178,7 @@ df_meta <- open_dataset('data/db/meta', partitioning = 'job_id') |>
 quarto render doc.qmd -P job:"Бухгалтер" -P area:"Москва" --output doc.pdf
 ```
 
-## Что нового: модульный дизайн {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Что нового: модульный дизайн {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Некоторые преимущества модульных документов включают:
 
@@ -189,7 +187,7 @@ quarto render doc.qmd -P job:"Бухгалтер" -P area:"Москва" --outpu
 3. [Абстракция: скрывать детали реализации от читателей документа.]{}
 4. [Удобство поддержки: нужно вносить изменения только в одном месте.]{}
 
-## Что нового: расширенное форматирование {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Что нового: расширенное форматирование {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Quarto изначально включает все необходимое для научных публикаций и [воспроизводимого анализа](https://habr.com/ru/articles/417469/):
 
@@ -222,7 +220,7 @@ $$A = \begin{pmatrix}4&-3&-3\\1&2&1\\1&1&2\end{pmatrix}$$
 
 :::
 
-## Что со всем этим делать? {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Что со всем этим делать? {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Quarto «из коробки» позволяет создавать более 40 форматов документов (`format: ваш-формат`).
 
@@ -246,9 +244,9 @@ Quarto динамично развивается, появляются новы�
 
 И сделаете по ней уверенные шаги.
 
-# Алгоритм работы {background-image="slides/section.jpg" background-size="contain"}
+# Алгоритм работы {background-image="images/section.jpg" background-size="contain"}
 
-## Общий алгоритм проектов Quarto {.scrollable background-image="slides/slide.jpg" background-size="contain"}
+## Общий алгоритм проектов Quarto {.scrollable background-image="images/slide.jpg" background-size="contain"}
 
 ```{mermaid}
 %%| label: quarto-general
@@ -266,7 +264,7 @@ flowchart LR
   class E optional
 ```
 
-## Общий алгоритм проектов Quarto {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Общий алгоритм проектов Quarto {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Кстати, код диаграммы:
 
@@ -287,11 +285,11 @@ flowchart LR
   class E optional
 ```
 
-## Как работает Quarto {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Как работает Quarto {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 При работе с R система Quarto сначала создает markdown-документ, который затем конвертируется в нужный формат программой `pandoc`.
 
-![](slides/qmd-both)
+![](images/qmd-both)
 
 [Источник: Tom Mock на [GitHub](https://github.com/jthomasmock/quarto-training){target="_blank"}]{style="font-size:0.7em;color:grey;"}
 
@@ -309,7 +307,7 @@ flowchart LR
 2. Потому что, во-вторых, Rmarkdown использует на четвертом шаге при работе с `pandoc` команды R для управления процессом, в частности, условные операторы. Quarto использует команды, написанные на языке Lua, как указано на диаграмме. Фильтры на Lua поставляются нам вместе с Quarto. Благодаря этому начиная с этапа с markdown-документом мы не зависим от R.
 :::
 
-## Типы проекта {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Типы проекта {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 ::: {layout-ncol=3 style="font-size:0.8em;"}
 ```{mermaid quarto-docs-static}
@@ -348,7 +346,7 @@ flowchart LR
 
 Проекты других доступных типов можно создать вручную, прописав `format: [наш-формат]`
 
-## Типы проекта {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Типы проекта {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Из одного документа можно сверстать несколько документов в разных форматах. При этом отображение можно настроить отдельно для каждого формата.
 
@@ -366,7 +364,7 @@ format:
 При этом компоненты Shiny требуют хостинга на удаленном сервере. Компоненты, основанные на JavaScript, будут интерактивными у читателей без дополнительных сложностей.
 :::
 
-## Типы проекта {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Типы проекта {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 ::: {.callout-note}
 Для верстки PDF нужно установить $\TeX$-дистрибутив. Лучше всего `tinytex`:
@@ -387,9 +385,9 @@ format:
       - file: packages.tex
 ```
 
-# Кастомизация проекта: элементы Quarto {background-image="slides/section.jpg" background-size="contain"}
+# Кастомизация проекта: элементы Quarto {background-image="images/section.jpg" background-size="contain"}
 
-## YAML-заголовки {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## YAML-заголовки {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 YAML («**Y**AML **A**in't **M**arkup **L**anguage») – язык сериализации данных, как JSON и XML. Используется Quarto для записи конфигурации проекта. Формат записи – `опция: значение`.
 
@@ -415,7 +413,7 @@ format:
 Для каждого из форматов существует до нескольких десятков опций. Полный список есть на [сайте Quarto](https://quarto.org/docs/reference/).
 :::
 
-## YAML-заголовки {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## YAML-заголовки {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 ::: {style="font-size:0.75em;"}
 В качестве значения может быть указан список:
@@ -456,7 +454,7 @@ format:
 В качестве примера многострочного текста в опциях я решил привести реальный заголовок из чужого проекта. Да, в большинстве случаев такие опции используются для передачи TeX-скриптов, пример чего мы еще увидим ниже. В данном примере используется javascript, но если присмотреться, речь все равно идет о TeX. Капризный TeX, который часто нужно настраивать.
 :::
 
-## YAML-заголовки {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## YAML-заголовки {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 К метаданным можно обращаться через синтаксис Quarto `{{<…>}}`:
 
@@ -478,7 +476,7 @@ format:
 Мне пришлось добавить обратную косую черту между первой парой фигурных скобок, потому что Quarto вычисляет значение своих переменных в любом окружении.
 :::
 
-## Пример настройки: HTML {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Пример настройки: HTML {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Опции HTML позволяют настраивать макет страницы, базовые элементы стиля и многое другое.
 
@@ -508,7 +506,7 @@ format:
 Внешний вид большинства элементов, шрифты и цвета можно настроить в YAML-заголовках. Все остальное можно прописать во внешнем css-файле.
 :::
 
-## Пример настройки: PDF {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Пример настройки: PDF {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 В PDF тоже можно настраивать макет (и размер) страницы, базовые элементы стиля, а также добавлять файлы $\TeX$ для более тонкой настройки.
 
@@ -539,7 +537,7 @@ format:
 
 {{< include otus-question.qmd >}}
 
-## Фрагменты кода {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Фрагменты кода {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Как и для Rmarkdown, возможность интерпретировать код и встраивать результаты его исполнения в документ является основной функциональной особенностью Quarto.
 
@@ -564,7 +562,7 @@ library(tidymodels)
 x <- rchisq(1e3, 13)
 ```
 
-## Фрагменты кода {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Фрагменты кода {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 В Quarto очень легко подсвечивать строки кода:
 
@@ -600,12 +598,12 @@ execute:
 
 ::: {.fragment}
 
-![](slides/purple-code-breeze)
+![](images/purple-code-breeze)
 
 :::
 :::
 
-## Контейнеры pandoc {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Контейнеры pandoc {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 При работе в Quarto рекомендуется использовать универсальный формат контейнеров `pandoc`
 
@@ -633,7 +631,7 @@ execute:
 А это будет примечание
 :::
 
-## Контейнеры pandoc {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Контейнеры pandoc {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 При работе в Quarto рекомендуется использовать универсальный формат контейнеров `pandoc`
 
@@ -649,20 +647,20 @@ execute:
 
 [Красный текст]{style="color:#d00;"}
 
-## Форматирование изображений {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Форматирование изображений {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Синтаксис изображений похож на гиперссылки, но с восклицательным знаком в начале:
 
 ``` markdown
 ![Собачка](doge.png "Изображение собаки"){height=2cm}
 ```
-![Собачка](slides/doge.png "Изображение собаки"){height=2cm}
+![Собачка](images/doge.png "Изображение собаки"){height=2cm}
 
 Надпись в квадратных скобках считается подписью к изображению. Ее можно оставить пустой.
 
 Текст в кавычках после url изображения – его всплывающее название (`<img … title=…>`)
 
-## Форматирование изображений {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Форматирование изображений {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Можно добавлять атрибуты, например, выравнивание:
 
@@ -670,9 +668,9 @@ execute:
 ![Собачка](doge.png "Изображение собаки побольше"){fig-align="left" fig-alt="Изображение собаки"}
 ```
 
-![Собачка](slides/doge.png "Изображение собаки побольше"){width=200 fig-align="left" fig-alt="Изображение собаки"}
+![Собачка](images/doge.png "Изображение собаки побольше"){width=200 fig-align="left" fig-alt="Изображение собаки"}
 
-## Форматирование изображений {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Форматирование изображений {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Можно сгруппировать несколько изображений и расположить их определенным образом:
 
@@ -690,14 +688,14 @@ execute:
 
 ::: {#fig-two-triangles layout-ncol=2}
 
-![Первая картинка](slides/tred.png){#fig-triangle-red width=111}
+![Первая картинка](images/tred.png){#fig-triangle-red width=111}
 
-![Вторая картинка](slides/tblue.png){#fig-triangle-blue width=111}
+![Вторая картинка](images/tblue.png){#fig-triangle-blue width=111}
 
 Две картинки
 :::
 
-## Форматирование изображений {.smaller .scrollable background-image="slides/slide.jpg" background-size="contain"}
+## Форматирование изображений {.smaller .scrollable background-image="images/slide.jpg" background-size="contain"}
 
 В качестве макета можно указать массив, каждый элемент которого – ряд в сетке:
 
@@ -714,11 +712,11 @@ execute:
 ```
 
 ::: {#fig-images layout="[[20,20], [40]]" style="font-size:0.5em;"}
-![Первая картинка](slides/quarto){#fig-01 width=20}
+![Первая картинка](images/quarto){#fig-01 width=20}
 
-![Вторая картинка](slides/quarto){#fig-02 width=20}
+![Вторая картинка](images/quarto){#fig-02 width=20}
 
-![Картинка во втором ряду](slides/quarto){#fig-long width=40}
+![Картинка во втором ряду](images/quarto){#fig-long width=40}
 
 Три картинки
 :::
@@ -727,7 +725,7 @@ execute:
 Отрицательные значения в массиве добавляют пространство между соседними изображениями в ряду.
 :::
 
-## Форматирование изображений {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Форматирование изображений {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Если назвать контейнер с изображениями `#fig-…`, Quarto представит его как одно изображение из нескольких частей (как на предыдущем слайде) и пронумерует соответсвенно.
 
@@ -747,7 +745,7 @@ crossref:
 Например, можно перевести префиксы на русский. К сожалению, нумерации из кириллических букв нет.
 :::
 
-## Форматирование изображений {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Форматирование изображений {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Для изображений, генерируемых кодом, параметры задают внутри блока:
 
@@ -772,7 +770,7 @@ hist(mtcars$disp)
 Обратите внимание: здесь изображения не пронумерованы: для того, чтобы они были пронумерованы, необходимо дать блоку кода название, начинающееся с `fig-`
 :::
 
-## Форматирование изображений {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Форматирование изображений {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Блок кода, чье название начинается с `fig-`, генерирует пронумерованные изображения, на которые можно ссылаться:
 
@@ -793,7 +791,7 @@ hist(mtcars$disp)
 На этот раз изображения пронумерованы.
 :::
 
-## Интерактивные элементы {.smaller .scrollable background-image="slides/slide.jpg" background-size="contain"}
+## Интерактивные элементы {.smaller .scrollable background-image="images/slide.jpg" background-size="contain"}
 
 Формат HTML и производные от него (как revealjs) позволяют добавлять в документ интерактивные элементы семейства `htmlwidgets`
 
@@ -826,7 +824,7 @@ plot_ly(
 ```
 :::
 
-## Интерактивные элементы {.smaller .scrollable background-image="slides/slide.jpg" background-size="contain"}
+## Интерактивные элементы {.smaller .scrollable background-image="images/slide.jpg" background-size="contain"}
 
 Формат HTML и производные от него (как revealjs) позволяют добавлять в документ интерактивные элементы семейства `htmlwidgets`
 
@@ -843,7 +841,7 @@ leaflet() %>%
   addMarkers(lng=37.560826, lat=55.722685, popup="Я разговариваю с вами отсюда")
 ```
 
-## Макеты страниц {.smaller .scrollable background-image="slides/slide.jpg" background-size="contain"}
+## Макеты страниц {.smaller .scrollable background-image="images/slide.jpg" background-size="contain"}
 
 ::: {.r-fit-text}
 Макет страницы – это то, как *по умолчанию* располагаются элементы на странице и друг относително друга. 
@@ -870,7 +868,7 @@ format:
 Grid, решетка – это, как вы, наверное, видели в Shiny, упорядочивание содержимого страницы по строкам и столбцам. В раскладке `full` этого нет, элементы просто следуют один за другим, поэтому вам придется позаботиться о структуре самим (например, используя CSS Grid) и как минимум задать поля (`margin-top` и прочие).
 :::
 
-## Макеты для интерактивного взаимодействия {.smaller .scrollable background-image="slides/slide.jpg" background-size="contain"}
+## Макеты для интерактивного взаимодействия {.smaller .scrollable background-image="images/slide.jpg" background-size="contain"}
 
 Если вы используете интерактивные элементы с возможностью управления их отображения пользователем (как в Shiny), можно использовать раскладку, облегчающую интерактивное взаимодействие:
 
@@ -878,7 +876,7 @@ Grid, решетка – это, как вы, наверное, видели в
 - [`.panel-tabset`: помещает контент в несколько вкладок, между которыми можно переключаться;]{}
 - [`.panel-sidebar` и `.panel-fill` или `.panel-center`: боковая панель для элементов управления и широкая панель для отображаемого контента.]{}
 
-## Макеты для интерактивного взаимодействия {.smaller .scrollable background-image="slides/slide.jpg" background-size="contain"}
+## Макеты для интерактивного взаимодействия {.smaller .scrollable background-image="images/slide.jpg" background-size="contain"}
 
 ::: {style="font-size:0.8em;"}
 
@@ -926,9 +924,9 @@ plotOutput('plot1')
 
 :::
 
-# Комплексные публикации {background-image="slides/section.jpg" background-size="contain"}
+# Комплексные публикации {background-image="images/section.jpg" background-size="contain"}
 
-## Сайты, блоги, книги {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Сайты, блоги, книги {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Quarto содержит нативную поддержку создания комплексных публикаций:
 
@@ -945,7 +943,7 @@ Quarto содержит нативную поддержку создания к�
 - [элементы навигации (содержание, меню, вкладки, поиск и т. п.);]{}
 - [ресурсы (изображения, темы, скрипты и т. п.).]{}
 
-## Создание сайта в Quarto – Заготовка {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Создание сайта в Quarto – Заготовка {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Проще всего создать сайт, блог или книгу как проект RStudio:
 
@@ -953,20 +951,20 @@ Quarto содержит нативную поддержку создания к�
 
 ::: {.columns style="valign:bottom;"}
 ::: {.column}
-![](slides/website-01-project.jpg){fig-height=100}
+![](images/website-01-project.jpg){fig-height=100}
 
 Выбираем Quarto…
 :::
 ::: {.column}
 ::::: {.fragment}
-![](slides/website-02-files.jpg){fig-height=100}
+![](images/website-02-files.jpg){fig-height=100}
 
 RStudio создает для нас необходимые файлы и пару файлов для примера
 :::::
 :::
 :::
 
-## Создание сайта в Quarto – Метаданные {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Создание сайта в Quarto – Метаданные {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Информация о проекте, в том числе ссылки на контент,  описание структуры и общий стиль, содержится в файле `_quarto.yml`:
 
@@ -995,7 +993,7 @@ format:
 ---
 ```
 
-## Создание сайта в Quarto – Навигация {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Создание сайта в Quarto – Навигация {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 В Quarto можно легко создать следующие элементы навигации:
 
@@ -1004,7 +1002,7 @@ format:
 - [`page-footer` (подвал сайта);]{}
 - [`search` (поисковый виджет).]{}
 
-## Создание сайта в Quarto – Навигация {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Создание сайта в Quarto – Навигация {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Пример задания верхней навигационной панели:
 
@@ -1028,7 +1026,7 @@ website:
         target: _blank
 ```
 
-## Создание сайта в Quarto – Навигация {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Создание сайта в Quarto – Навигация {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Пример задания боковой панели:
 
@@ -1051,7 +1049,7 @@ website:
           - entry-04.qmd
 ```
 
-## Создание сайта в Quarto – Навигация {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Создание сайта в Quarto – Навигация {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Пример задания нижней панели (подвала):
 
@@ -1067,7 +1065,7 @@ website:
       - about.qmd
 ```
 
-## Создание сайта в Quarto – Навигация {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Создание сайта в Quarto – Навигация {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Пример задания поискового виджета:
 
@@ -1081,7 +1079,7 @@ website:
     limit: 5         # Максимальное количество результатов для показа
 ```
 
-## Создание сайта в Quarto – Рендеринг {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Создание сайта в Quarto – Рендеринг {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Для предпросмотра нашего сайта находим:
 
@@ -1089,9 +1087,9 @@ website:
 2. [Вкладку `Build`]{}
 3. [Кнопку `Render Website`]{}
 
-![](slides/website-03-render.jpg)
+![](images/website-03-render.jpg)
 
-## Создание сайта в Quarto – Публикация {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Создание сайта в Quarto – Публикация {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Помимо собственного сервера, опубликовать сайт можно на [Quarto Pub](https://quartopub.com/), [Posit Connect](https://posit.co/products/enterprise/connect/), [GitHub Pages](https://pages.github.com/), [Netlify](https://www.netlify.com/) и некоторых других платформах.
 
@@ -1101,7 +1099,7 @@ website:
 
 Если мы назовем проект и репозиторий `name`, где `name` – любое название, мы создадим сайт по адресу `username.github.io/name`.
 
-## Создание сайта в Quarto – Публикация {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Создание сайта в Quarto – Публикация {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 Рассмотрим публикацию на GitHub Pages:
 
@@ -1133,17 +1131,17 @@ git remote add origin https://github.com/username/name.git
 git push -u origin main
 ```
 
-## Создание сайта в Quarto – Публикация {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Создание сайта в Quarto – Публикация {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 4. [В настройках репозитория в меню Pages разрешаем развертывание на Pages: выбираем ветку и папку (@fig-github-pages)]{}
 
 . . .
 
-![Настройка отображения на GitHub Pages](slides/github-pages){#fig-github-pages height=11em}
+![Настройка отображения на GitHub Pages](images/github-pages){#fig-github-pages height=11em}
 
-# Рефлексия {background-image="slides/section.jpg" background-size="contain"}
+# Рефлексия {background-image="images/section.jpg" background-size="contain"}
 
-## Рефлексия {.smaller background-image="slides/slide.jpg" background-size="contain"}
+## Рефлексия {.smaller background-image="images/slide.jpg" background-size="contain"}
 
 [Спросите себя. Расскажите в чате или голосом:]{.absolute top="90" left="52" style="color:#FF9900 !important;"}
 

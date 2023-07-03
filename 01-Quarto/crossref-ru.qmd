@@ -2,7 +2,7 @@
 format:
     revealjs:
       theme: ../tools/otus.scss
-      logo: slides/owls_R.png
+      logo: images/owls_R.png
       incremental: true
       width: 960
       height: 540
