@@ -36,7 +36,7 @@ format:
           \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
           \usepackage{icomma}
 params:
-  job: "Бухгалтер"
+  job: Бухгалтер
 crossref:
   fig-title: Рис.
   tbl-title: Таблица

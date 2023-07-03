@@ -1,14 +1,4 @@
 ---
-format:
-    revealjs:
-      theme: ../tools/otus.scss
-      logo: images/owls_R.png
-      incremental: true
-      width: 960
-      height: 540
-resource-path: 
-  - "../images"
-default-image-extension: "png"
 crossref:
   fig-title: Рис.     # (default is "Figure")
   tbl-title: Таб.     # (default is "Table")
