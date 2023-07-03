@@ -7,6 +7,8 @@ format:
       width: 960
       height: 540
       mermaid-format: png
+      embed-resources: true
+      standalone: true
 default-image-extension: "png"
 author-name: Андрей Павлюченко
 author-role: Старший медиааналитик
@@ -89,30 +91,7 @@ author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
 
 ## Маршрут вебинара {background-image="images/slide.jpg" background-size="contain"}
 
-```{mermaid webinar-route}
-%%| fig-align: left
-
-flowchart TD
-  A(Что такое Quarto и чем он отличается от Rmarkdown)
-  N(Новые возможности Quarto                         )
-  G(Общий алгоритм работы в Quatro                   )
-  C(Кастомизация проекта                             )
-  E(Создание сайтов в Quarto                         )
-  R(Рефлексия                                        )
-  
-  A --> N --> G --> C --> E --> R
-  
-  classDef monowidth width:666px,float:left;
-  classDef otus-route fill:#FFD966,stroke:#FFD966,color:#111111;
-  class A otus-route
-  class N otus-route
-  class G otus-route
-  class C otus-route
-  class E otus-route
-  class R otus-route
-  
-  linkStyle default fill:none,stroke-dasharray:10,stroke:grey;
-```
+![](images/route)
 
 ## Цели вебинара {.smaller background-image="images/slide.jpg" background-size="contain"}
 

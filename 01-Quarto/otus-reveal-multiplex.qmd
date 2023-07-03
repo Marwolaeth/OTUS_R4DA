@@ -17,8 +17,6 @@ format:
       mermaid-format: png
       multiplex: true
       embed-resources: true
-resource-path: 
-  - "/slides"
 default-image-extension: "png"
 author-name: Андрей Павлюченко
 author-role: Старший медиааналитик
