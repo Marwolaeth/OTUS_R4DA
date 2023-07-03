@@ -831,6 +831,7 @@ hist(mtcars$disp)
 
 Блок кода, чье название начинается с `fig-`, генерирует пронумерованные изображения, на которые можно ссылаться:
 
+::: {style="font-size:0.75em;"}
 ```{r}
 #| echo: fenced
 #| label: fig-two-plots
@@ -843,6 +844,7 @@ hist(mtcars$disp)
 hist(mtcars$mpg)
 hist(mtcars$disp)
 ```
+:::
 
 ::: {.notes}
 На этот раз изображения пронумерованы.
@@ -1030,7 +1032,7 @@ plotOutput('plot1')
 
 ## Условный контент {.smaller .scrollable background-image="images/slide.jpg" background-size="contain"}
 
-::: {style="font-size:0.9em;"}
+::: {style="font-size:0.8em;"}
 Иногда вам понадобится настроить видимость того или иного фрагмента документа в зависимости от формата, в котором он будет сверстан. Например, загружать интерактивные элементы для HTML, но прятать их или заменять статичным контентом для PDF.
 
 Для этого в Quarto предусмотрено две пары команд (точнее, два класса и два атрибута для контейнеров с контентом), которые можно комбинировать:
@@ -1255,6 +1257,7 @@ website:
 
 ## Создание сайта в Quarto – Публикация {.smaller background-image="images/slide.jpg" background-size="contain"}
 
+::: {style="font-size:0.75em;"}
 Рассмотрим публикацию на GitHub Pages:
 
 1. [Прописываем, что папка с сайтом должна называться “docs” (по умолчанию “_site”)]{}
@@ -1284,6 +1287,7 @@ git branch -M main
 git remote add origin https://github.com/username/name.git
 git push -u origin main
 ```
+:::
 
 ## Создание сайта в Quarto – Публикация {.smaller background-image="images/slide.jpg" background-size="contain"}
 
