@@ -1,0 +1,120 @@
+/*-- scss:defaults --*/
+
+//mermaid
+$mermaid-node-bg-color: #FFD966;
+$mermaid-node-fg-color: #FFD966;
+$mermaid-edge-color: #111;
+
+// fonts
+$font-family-sans-serif: Roboto !default;
+
+// colors
+$body-bg: #fff;
+$body-color: #111;
+$link-color: #FF9900 !default;
+$selection-bg: #FF9900 !default;
+
+// headings
+$presentation-heading-font: Roboto !default;
+$presentation-heading-color: #111 !default;
+$presentation-heading-line-height: 1.2;
+
+//title
+$presentation-title-slide-text-align:	left;
+$presentation-title-slide-body-color:	#fff;
+
+//lines;
+$presentation-line-height: 1.15;
+
+/*-- scss:rules --*/
+
+a {
+  color: #FF9900;
+  text-decoration: underline !important;
+}
+
+li
+{
+    color: #FF9900;
+}
+
+li > span
+{
+    color: #111;
+}
+
+.output {
+  width: 50%;
+  background-color: #bbb;
+  border-color: #888;
+  border: 1px solid;
+}
+
+#title-slide {
+  position: absolute;
+  left: 10%;
+  width: 100%;
+  color: #eee;
+  text-align: left;
+  padding-left: 20;
+  line-height: 0.9;
+  
+  .title{
+    color: #eee;
+    position: absolute;
+    top: 188 !important;
+    font-size: 56px !important;
+    padding-left: 200;
+    line-height: 0.9;
+  }
+  
+  .subtitle {
+    position: absolute;
+    top: 388 !important;
+    padding-top: 2em;
+    font-size: 36;
+  }
+
+  .quarto-title-authors {
+    justify-content: left;
+    padding-top: 20%;
+  
+    .quarto-title-author {
+      font-size: 18;
+      width: 100%;
+    }
+  }
+}
+
+.title-slide {
+  h1{
+    position: absolute;
+    color: #eee;
+    padding-top: 20%;
+  }
+}
+
+section {
+  h2 {
+    font-size: 36px !important;
+  }
+}
+
+.reveal {
+  line-height: 1.15em;
+}
+
+.center{
+  margin: 0!important;
+  height: 30px;
+}
+
+.inline{
+  margin: 0!important;
+  height: 1.5cm;
+}
+
+.reveal .slide blockquote {
+  border-left: 3px solid $text-muted;
+  padding-left: 0.5em;
+}

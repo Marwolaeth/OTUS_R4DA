@@ -1,7 +1,7 @@
 ---
 format:
     revealjs:
-      theme: ../tools/otus.scss
+      theme: otus.scss
       logo: images/owls_R.png
       incremental: true
       width: 960
@@ -15,8 +15,14 @@ author-role: Старший медиааналитик
 author-image: images/apawluczenko
 author-job : "Мониторинг и исследования медиа (Brand Analytics, Медиалогия, R, Python)"
 author-likes: "Люблю делать: Text Mining, графовый анализ, интерактивные дэшборды"
-author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
+author-contact: "a.pawluczenko@gmail.com / @a.pawluczenko"
 ---
+
+```{r}
+#| label: cm-to-px
+#| echo: false
+px <- 960 / 25.4
+```
 
 ##  {#slide-rec data-menu-title="Запись" background-image="images/slide.jpg" background-size="contain"}
 
@@ -60,34 +66,38 @@ author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
 
 ## Правила вебинара {background-image="images/slide.jpg" background-size="contain"}
 
-::: {.columns .absolute left=88 style="font-size:0.85em;"}
-::: {.column width="20%"}
-![](images/rules-active){.center-big}
+::: {.absolute left=88 style="font-size:0.5em;" layout="[[10, 70, 20], [10, 70, 20], [10, 70, 20], [10, 70, 20], [10, 70, 20]]" layout-valign="center"}
+![](images/rules-active){height="0.5em"}
 
-![](images/rules-offtop){.center-big}
+Активно участвуем
 
-![](images/rules-ask){.center-big}
+[]{style="visibility: hidden;"}
 
-![](images/rules-presense){.center-big}
+![](images/rules-offtop){height="0.5em"}
 
-![](images/rules-delay){.center-big}
+Офф-топик обсуждаем в Telegram
+
+[]{style="visibility: hidden;"}
+
+![](images/rules-ask){height="0.5em"}
+
+Вопросы пишем в чат или поднимаем руку и говорим голосом
+
+[]{style="visibility: hidden;"}
+
+![](images/rules-presense){height="0.5em"}
+
+Включенная камера – желательно, но не обязательно
+
+[]{style="visibility: hidden;"}
+
+![](images/rules-delay){height="0.5em"}
+
+Вопросы вижу в чате, могу ответить не сразу
+
+[]{style="visibility: hidden;"}
 :::
 
-::: {.column style="margin:0!important;"}
-Активно \
-участвуем
-
-Обсуждаем \
-в Telegram
-
-Пишем в чат или поднимаем руку и говорим
-
-Камера – желательно, но не обязательно
-
-Вопросы вижу в чате,
-могу ответить не сразу
-:::
-:::
 
 ## Маршрут вебинара {background-image="images/slide.jpg" background-size="contain"}
 
@@ -97,11 +107,13 @@ author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
 
 [К концу вебинара вы сможете:]{style="color:#FF9900 !important;"}
 
+::: {style="font-size:0.9em;"}
 1. [Разбираться в возможностях, форматах и опциях Quarto.]{}
 2. [Создавать базовые документы в Quarto для разных форматов.]{}
 3. [Наполнять их различным статическим и динамическим контентом.]{}
 4. [Использовать возможности модульного и параметрического дизайна Quarto.]{}
 5. [Использовать свои знания и документацию Quarto для создания продвинутых документов.]{}
+:::
 
 ::: {.notes}
 На прошлом занятии вы уже научились создавать Rmarkdown-документы, которые затем `pandoc` рендерит в разные форматы. Эти знания и умения – основа того, что вы будете делать с Quarto. Но ребята из Posit долго втайне делали-делали Quarto и наделали столько, что возможностей системы хватило бы на целый курс. Поэтому на данном занятии нам важно именно разобраться. Даже начать разбираться. И тогда, если вам будет интересно, ничего невозможного в Quarto для вас не будет.

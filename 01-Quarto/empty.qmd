@@ -52,3 +52,18 @@ leaflet() |>
   addMarkers(lng=37.560826, lat=55.722685, popup="Я разговариваю с вами отсюда")
 ```
 
+**Answer**: Linear regression is best understood in terms of *Linear Algebra*. We collect our dataset into a $D \times n$ dimensional [**Design Matrix**](https://en.wikipedia.org/wiki/Design_matrix) so that
+
+\begin{equation}
+    X := \begin{pmatrix}
+    \vdots & \vdots & & \vdots \\
+    \mathbf{x}_1 & \mathbf{x}_2 & ... & \mathbf{x}_n \\
+    \vdots & \vdots & & \vdots
+    \end{pmatrix}
+\end{equation}
+
+and our targets into a target vector
+
+\begin{equation}
+    \mathbf{y} := (y_1, ..., y_n)
+\end{equation}

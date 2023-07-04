@@ -37,5 +37,6 @@ nul
 misc
 !*multiplex*
 !*Quarto*.pdf
+*backup*
 # R Environment Variables
 .Renviron
