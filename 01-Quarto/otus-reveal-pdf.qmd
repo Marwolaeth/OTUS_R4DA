@@ -1,7 +1,7 @@
 ---
-title: "  Язык R для анализа данных"
-subtitle: "  Утилита формирования отчётов Quarto"
-author  : "  otus.ru"
+title: "Язык R для анализа данных"
+subtitle: " Утилита формирования отчётов Quarto"
+author  : "otus.ru"
 title-slide-attributes:
   data-background-image: images/title.jpg
   data-background-size: contain
@@ -17,9 +17,6 @@ format:
       code-fold: show
       code-summary: "Показать код"
       standalone: true
-    pdf: 
-      width: 960
-      height: 540
 default-image-extension: "png"
 author-name: Андрей Павлюченко
 author-role: Старший медиааналитик

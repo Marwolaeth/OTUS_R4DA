@@ -38,8 +38,17 @@ ols <- lm(mpg ~ wt, data = mtcars)
 You can add options to executable code like this 
 
 ```{r}
-#| echo: false
-2 * 2
+#| label: leaflet-google
+library(leaflet)
+
+leaflet() |>
+  addTiles(
+    # Спутник
+    # urlTemplate = "https://mts1.google.com/vt/lyrs=s&hl=en&src=app&x={x}&y={y}&z={z}&s=G",
+    # Карта
+    urlTemplate = "http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga",
+    attribution = 'Google'
+  ) |>
+  addMarkers(lng=37.560826, lat=55.722685, popup="Я разговариваю с вами отсюда")
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
