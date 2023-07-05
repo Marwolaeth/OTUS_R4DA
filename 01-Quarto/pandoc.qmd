@@ -1,0 +1,67 @@
+---
+title: "Очень универсальный документ"
+mainfont: Corbel
+format:
+  pdf:
+    pdf-engine: weasyprint
+  html: 
+    theme: united
+  revealjs:
+    incremental: true
+  beamer:
+    aspectratio: 169
+    include-in-header:
+      text: |
+        \usepackage[english,russian]{babel}
+        \usepackage{amsmath}
+        \setsansfont{Courier New}
+  pptx:
+    incremental: true
+  docx:
+    toc: true
+  epub: 
+    toc: true
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this 
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+
+## Математика и формулы:
+
+В Quarto можно легко вставлять формулы \LaTeX:
+
+\begin{equation}
+  \hat{y} = \hat{\beta_0} + \hat{\beta_1}x_1 + \dots + \hat{\beta_k}x_k
+\end{equation}
+
+::: {.content-hidden unless-format="pptx"}
+$$
+  \hat{y} = \hat{\beta_0} + \hat{\beta_1}x_1 + \dots + \hat{\beta_k}x_k
+$$
+:::
+
+
+::: {.content-hidden unless-format="docx"}
+$$
+  \hat{y} = \hat{\beta_0} + \hat{\beta_1}x_1 + \dots + \hat{\beta_k}x_k
+$$
+:::

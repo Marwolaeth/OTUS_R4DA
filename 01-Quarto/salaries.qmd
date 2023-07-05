@@ -6,8 +6,8 @@ format:
     theme:
       light: pulse
       dark: cyborg
-    css: styles.css
     page-layout: article
+    css: styles.css
     mainfont: corbel
     fontsize: 1.1rem
     fontcolor: "#090103"
@@ -17,6 +17,7 @@ format:
     title-block-banner: "#DDBEED"
     title-block-banner-color: "#AA26EE"
     margin-top: 40px
+    embed-resources: true
   pdf:
     mainfont: Georgia
     monofont: Consolas
@@ -25,6 +26,7 @@ format:
     urlcolor: MediumOrchid
     papersize: A5
     fig-format: png
+    pdf-engine: weasyprint
     include-in-header:
       - text: |
           \usepackage[english,russian]{babel}
@@ -76,8 +78,12 @@ df_text_all <- open_dataset('data/db/text', partitioning = 'job_id')
 
 ## О наборе данных
 
-::: {.bordered}
+::: {.bordered style="border: #AA26EE 1px dashed;"}
 В нашем распоряжении находится подборка объявлений о вакантных рабочих местах с сайта [HeadHunter](https://hh.ru/){target="_blank"} по запросу «`r params$job`».
+:::
+
+::: {.callout-caution title="Внимание"}
+Спасибо за внимание
 :::
 
 ## Распределение заработных плат
