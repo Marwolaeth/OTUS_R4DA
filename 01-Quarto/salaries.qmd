@@ -26,7 +26,7 @@ format:
     urlcolor: MediumOrchid
     papersize: A5
     fig-format: png
-    pdf-engine: weasyprint
+    pdf-engine: xelatex
     include-in-header:
       - text: |
           \usepackage[english,russian]{babel}

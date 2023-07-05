@@ -445,7 +445,7 @@ flowchart LR
 
 ## Типы проекта {.smaller background-image="images/slide.jpg" background-size="contain"}
 
-Из одного документа можно сверстать несколько документов в разных форматах. При этом отображение можно настроить отдельно для каждого формата.
+Из одного ноутбука можно сверстать несколько документов в разных форматах. При этом отображение можно настроить отдельно для каждого формата.
 
 ```yaml
 format:
@@ -512,6 +512,8 @@ format:
 ```
 
 ::: {.notes}
+Это то место, где хранятся глобальные настройки всего нашего ноутбука или целого сайта.
+
 Опции Quarto делятся на:
 
 - общие;
@@ -558,12 +560,14 @@ format:
 :::
 
 ::: {.notes}
+Еще один справочный слайд.
+
 В качестве примера многострочного текста в опциях я решил привести реальный заголовок из чужого проекта. Да, в большинстве случаев такие опции используются для передачи TeX-скриптов, пример чего мы еще увидим ниже. В данном примере используется javascript, но если присмотреться, речь все равно идет о TeX. Капризный TeX, который часто нужно настраивать.
 :::
 
 ## YAML-заголовки {.smaller background-image="images/slide.jpg" background-size="contain"}
 
-К метаданным можно обращаться через синтаксис Quarto `{{<…>}}`:
+К метаданным можно обращаться через синтаксис Quarto `{{<…>}}` с ключевым словом `meta`:
 
 ```{shortcodes=false}
 [{{< meta author >}}]{style="font-family:Courier;font-size:3em;float:right;"}
@@ -1278,9 +1282,9 @@ plotOutput('plot1')
 {{< video https://www.youtube.com/watch?v=EbAAmrB0luA title='Quarto for Academics'>}}
 ```
 
-::: {.content-visible when-format="html:js" align="center"}
-{{< video https://www.youtube.com/watch?v=EbAAmrB0luA title='Quarto for Academics'>}}
-:::
+<!-- ::: {.content-visible when-format="html:js" align="center"} -->
+<!-- {{< video https://www.youtube.com/watch?v=EbAAmrB0luA title='Quarto for Academics'>}} -->
+<!-- ::: -->
 
 ::: {.content-visible unless-format="html:js"}
 :::: {.callout-caution title="Помните"}

@@ -1,0 +1,59 @@
+---
+title: "Untitled"
+format:
+  pdf:
+    mainfont: Georgia
+    monofont: Consolas
+    linkcolor: Bittersweet
+    citecolor: Mahogany
+    urlcolor: MediumOrchid
+    papersize: A6
+    fig-format: png
+    include-in-header:
+      - text: |
+          \usepackage[english,russian]{babel}
+          \usepackage{fontspec}
+          \setsansfont{Courier New}
+          \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+          \usepackage{icomma}
+  html:
+    theme: united
+  beamer: 
+    mainfont: Corbel
+  pptx: 
+    incremental: true
+  revealjs: 
+    incremental: true
+  docx: 
+    toc: true
+  epub: 
+    toc: true
+bibliography: references.bib
+---
+
+## Знакомство с Quarto
+
+Quarto позволяет нам сплетать вместе исполняемый код и изображения для создания чего-то там. To learn more about Quarto see <https://quarto.org>.
+
+::: {.callout-note title="Обратите внимание"}
+А это будет примечание
+:::
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+See [@leontiev2011]

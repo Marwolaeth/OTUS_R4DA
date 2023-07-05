@@ -61,6 +61,7 @@ render_job_report <- function(job){
   job_name = stringi::stri_trans_general(job, "ru-ru_Latn/BGN")
   quarto::quarto_render(
     input = "salaries.qmd",
+    output_format = 'html',
     execute_params = list(job = job),
     output_file = glue::glue("{job_name}-report.html")
   )
