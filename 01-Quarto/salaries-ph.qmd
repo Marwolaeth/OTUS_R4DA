@@ -1,0 +1,49 @@
+---
+title: "Зарплаты в Москве"
+author: "otus.ru"
+format:
+  html:
+    theme:
+      light: pulse
+      dark: cyborg
+    page-layout: article
+    css: styles.css
+    mainfont: corbel
+    fontsize: 1.1rem
+    fontcolor: "#090103"
+    linkcolor: "#E81444"
+    monofont: consolas
+    title-block-style: plain
+    title-block-banner: "#DDBEED"
+    title-block-banner-color: "#AA26EE"
+    margin-top: 40px
+    embed-resources: true
+  pdf:
+    mainfont: Georgia
+    monofont: Consolas
+    linkcolor: Bittersweet
+    citecolor: Mahogany
+    urlcolor: MediumOrchid
+    papersize: A5
+    fig-format: png
+    pdf-engine: weasyprint
+    include-in-header:
+      - text: |
+          \usepackage[english,russian]{babel}
+          \setsansfont{Courier New}
+          \usepackage{icomma}
+params:
+  job: Менеджер по продажам
+crossref:
+  fig-title: Рис.
+  tbl-title: Таблица
+  fig-prefix: Рис.
+  tbl-prefix: Таблице
+execute: 
+  warning: false
+  echo: false
+  include: false
+keywords: [r, data analysis, quarto, markdown, pdf]
+---
+
+{{< include salaries.qmd >}}

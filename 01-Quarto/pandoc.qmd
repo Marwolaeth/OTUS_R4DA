@@ -2,10 +2,10 @@
 title: "Очень универсальный документ"
 mainfont: Corbel
 format:
-  pdf:
-    pdf-engine: weasyprint
   html: 
     theme: united
+  pdf:
+    pdf-engine: weasyprint
   revealjs:
     incremental: true
   beamer:
@@ -27,6 +27,10 @@ format:
 
 Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
 
+::: {.callout-note}
+A note
+:::
+
 ## Running Code
 
 When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
@@ -35,7 +39,7 @@ When you click the **Render** button a document will be generated that includes 
 1 + 1
 ```
 
-You can add options to executable code like this 
+You can add options to executable code like this
 
 ```{r}
 #| echo: false
@@ -43,7 +47,6 @@ You can add options to executable code like this
 ```
 
 The `echo: false` option disables the printing of code (only output is displayed).
-
 
 ## Математика и формулы:
 
@@ -58,7 +61,6 @@ $$
   \hat{y} = \hat{\beta_0} + \hat{\beta_1}x_1 + \dots + \hat{\beta_k}x_k
 $$
 :::
-
 
 ::: {.content-hidden unless-format="docx"}
 $$
