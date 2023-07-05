@@ -13,6 +13,12 @@ execute:
   echo: fenced
 ---
 
+::: {.content-visible unless-format="revealjs"}
+:::: {.callout-caution title="Помните"}
+Встраивание видео имеет смысл только в формате HTML
+::::
+:::
+
 ## Running Code
 
 When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:

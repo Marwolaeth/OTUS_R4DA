@@ -118,3 +118,13 @@ section {
   border-left: 3px solid $text-muted;
   padding-left: 0.5em;
 }
+
+.reveal {
+  .slides {
+    .slide {
+      div svg + p {
+        font-size: 0.5em;
+      }
+    }
+  }
+}
