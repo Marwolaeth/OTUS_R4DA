@@ -18,12 +18,6 @@ format:
       multiplex: true
       embed-resources: true
 default-image-extension: "png"
-author-name: Андрей Павлюченко
-author-role: Старший медиааналитик
-author-image: images/apawluczenko
-author-job : "Мониторинг и исследования медиа (Brand Analytics, Медиалогия, R, Python)"
-author-likes: "Люблю делать: Text Mining, графовый анализ, интерактивные дэшборды"
-author-contact: "+7 915 254-87-83 / a.pawluczenko@gmail.com / @a.pawluczenko"
 ---
 
 {{< include otus-reveal.qmd >}}

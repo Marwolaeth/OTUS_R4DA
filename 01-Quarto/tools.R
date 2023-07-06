@@ -8,8 +8,8 @@ strip_html <- function(s) {
 
 # Списки значений переменных HH: названия категорий на русском ----
 hh_dict_experience <- GET('https://api.hh.ru/dictionaries') %>%
-  httr::content() %>%
-  getElement('experience') %>%
+  httr::content() |>
+  getElement('experience') |>
   map_chr('name')
 
 # Форматы чисел ----
@@ -53,7 +53,7 @@ format_number_rus <- scales::label_number(
   decimal.mark = ','
 )
 format_small_rus <- scales::label_number(
-  accuracy = .001,
+  accuracy = .0001,
   big.mark = ' ',
   decimal.mark = ','
 )

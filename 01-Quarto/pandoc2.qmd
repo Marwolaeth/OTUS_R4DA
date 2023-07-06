@@ -1,0 +1,41 @@
+---
+title: "Untitled"
+format:
+  pdf:
+    mainfont: Corbel
+    monofont: Consolas
+    papersize: A5
+    include-in-header:
+      text: |
+        \newfontfamily{\cyrillicfonttt}{Corbel}
+        \newfontfamily{\cyrillicfont}{Corbel}
+        \newfontfamily{\cyrillicfontsf}{Corbel}
+  html: default
+  revealjs: default
+  epub:
+    html-math-method: mathml
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+::: {.callout-caution title="Внимание"}
+Спасибо за внимание
+:::
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+## Math
+
+You can easily include \LaTeX formulas into your document:
+
+$$
+Y = X\bar{\beta} + \bar{\epsilon}
+$$

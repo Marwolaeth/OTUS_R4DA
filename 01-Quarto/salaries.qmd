@@ -1,6 +1,7 @@
 ---
 title: "Зарплаты в Москве"
 author: "otus.ru"
+author-title: Автор
 format:
   html:
     theme:
@@ -8,7 +9,7 @@ format:
       dark: cyborg
     page-layout: article
     css: styles.css
-    mainfont: corbel
+    mainfont: Corbel
     fontsize: 1.1rem
     fontcolor: "#090103"
     linkcolor: "#E81444"
@@ -19,7 +20,7 @@ format:
     margin-top: 40px
     embed-resources: true
   pdf:
-    mainfont: Georgia
+    mainfont: Corbel
     monofont: Consolas
     linkcolor: Bittersweet
     citecolor: Mahogany
@@ -50,12 +51,7 @@ keywords: [r, data analysis, quarto, markdown, pdf]
 library(tidyr)
 library(dplyr)
 library(forcats)
-library(stringr)
-library(lubridate)
 library(purrr)
-library(recipes)
-library(tidylo)
-library(spacyr)
 library(arrow)
 library(ggplot2)
 library(PMCMRplus)
@@ -148,7 +144,7 @@ result_h0 <- ifelse(
 )
 ```
 
-Размер заработной платы `r result_dependency` от требуемого опыта работы (@fig-experience-plot). Гипотеза об отсутствии тренда `r result_h0` по критерию Джонкхира на уровне значимости 95%.
+Размер заработной платы `r result_dependency` от требуемого опыта работы (@fig-experience-plot). Гипотеза об отсутствии тренда `r result_h0` по критерию Джонкхира на уровне значимости 95% (p = `r format_small_rus(experience_test$p.value)`).
 
 ```{r experience-plot}
 #| include: true
