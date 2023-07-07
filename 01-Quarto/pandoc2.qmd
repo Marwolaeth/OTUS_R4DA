@@ -1,9 +1,12 @@
 ---
 title: "Untitled"
+mainfont: Corbel
+monofont: Consolas
+monobackgroundcolor: "#FFCDAF"
+urlcolor : "#FF9900"
+linkcolor: "#FF9900"
 format:
   pdf:
-    mainfont: Corbel
-    monofont: Consolas
     papersize: A5
     include-in-header:
       text: |
@@ -19,6 +22,8 @@ format:
 ## Quarto
 
 Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+Кстати, сегодня `r format(Sys.time(), "%A %e %B %Y")`. И это `моноширинный шрифт`.
 
 ::: {.callout-caution title="Внимание"}
 Спасибо за внимание

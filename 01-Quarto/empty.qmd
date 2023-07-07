@@ -35,6 +35,10 @@ hist(mtcars$mpg)
 hist(mtcars$disp)
 ```
 
+```{r fig-one-hist, echo="fenced", fig.id=TRUE, fig.cap="Распределение ЛС"}
+hist(mtcars$hp)
+```
+
 ```{{r}}
 #| label: ols-model
 
