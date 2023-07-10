@@ -1,0 +1,96 @@
+---
+title: "Panels"
+default-image-extension: png
+format:
+  html:
+    theme: united
+  pdf: default
+  docx: default
+execute: 
+  warning: false
+  message: false
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+::: {layout="[[20, -20, 20], [-20, 20, -20], [20, -20, 20]]" layout-align="center"}
+![](images/doge){width="60px"}
+
+![](images/doge){width="60px"}
+
+![](images/doge){width="60px"}
+
+![](images/doge){width="60px"}
+
+![](images/doge){width="60px"}
+:::
+
+[Side note.]{.aside}
+
+## Running Code
+
+::: {.column-page}
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+:::
+
+::: {.column-page layout="[[20, -20, 20, -20], [-20, 20, -20, 20]]"}
+![](images/doge){width="60px"}
+
+![](images/doge){width="60px"}
+
+![](images/doge){width="60px"}
+
+![](images/doge){width="60px"}
+:::
+
+## Plotly
+
+Here's a plotly diagram
+
+```{r}
+#| echo: true
+#| eval: true
+#| label: ex-plotly-code
+#| column: margin
+
+library(plotly)
+library(dplyr)
+library(forcats)
+
+# Небольшая предобработка: сделаем категориальную переменную явно категориальной
+mtcars <- mtcars |>
+  mutate(am = fct_recode(as.character(am), 'Automatic' = '0', 'Manual' = '1'))
+
+plot_ly(
+  mtcars,
+  x = ~wt,
+  y = ~hp,
+  z = ~qsec,
+  color = ~am,
+  colors = c('#BF382A', '#0C4B8E'),
+  width = 200, height = 140
+) |>
+  add_markers()
+```
+
+## Leaflet
+
+Here's a Leaflet map
+
+```{r}
+#| echo: true
+#| eval: true
+#| label: ex-leaflet-plot
+#| column: screen-inset
+library(leaflet)
+
+leaflet() |>
+  addTiles() |>  # По умолчанию загружает карту OpenStreetMap, и норм 
+  addMarkers(lng=37.560826, lat=55.722685, popup="Я разговариваю с вами отсюда")
+```
