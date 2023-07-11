@@ -826,7 +826,6 @@ format:
           \usepackage[english,russian]{babel}
           \usepackage{fontspec}
           \setsansfont{Courier New}
-          \usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
           \usepackage{icomma}
 ---
 ```
@@ -850,9 +849,13 @@ format:
 
 Вместо `text` можно передать на включение файл `.tex` с загрузкой библиотек, шрифтами и определениями собственных функций. В силу того, что TeX далеко не всегда дружит с кириллическими текстами, я советую иметь под рукой TeX-код Данила Федоровых: https://ru.overleaf.com/latex/templates/5-dot-2-2-russkii-iazyk-v-latex-xelatex/skfzmvgdgvnk.
 
-[Добавим команды из файла Федоровых]{style="color:#d00;"}]
+[Добавим команды из файла Федоровых]{style="color:#d00;"}
 
-[**Коллеги, есть ли у вас вопросы по настройке формата PDF?**]{style="color:#d00;"}]
+Другой вариант: библиотека R `azbuka`, которая содержит шаблоны документов Rmarkdown на русском языке с соответствующими настройками для PDF. Я кину ссылку в чат: https://github.com/bdemeshev/azbuka
+
+Правда, опции Rmarkdown придется адаптировать для Quarto вручную. Библиотека не обновлялась 6 лет, вряд ли автор переработает ее для Quarto, хотя все может быть.
+
+[**Коллеги, есть ли у вас вопросы по настройке формата PDF?**]{style="color:#d00;"}
 
 Тогда давайте вернемся к презентации
 :::

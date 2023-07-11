@@ -1,0 +1,206 @@
+---
+title: "Зарплаты в Москве"
+author: "otus.ru"
+author-title: Автор
+format:
+  html:
+    theme: pulse
+    page-layout: article
+    mainfont: Corbel
+    fontsize: 1.1rem
+    fontcolor: "#090103"
+    linkcolor: "#E81444"
+    monofont: consolas
+    margin-top: 40px
+    embed-resources: true
+  pdf:
+    mainfont: Corbel
+    monofont: Consolas
+    linkcolor: Bittersweet
+    citecolor: Mahogany
+    urlcolor: MediumOrchid
+    papersize: A5
+    fig-format: png
+    pdf-engine: xelatex
+    include-in-header:
+      - text: |
+          \usepackage[english,russian]{babel}
+          \setsansfont{Courier New}
+          \usepackage{icomma}
+params:
+  job: Бухгалтер
+crossref:
+  fig-title: Рис.
+  tbl-title: Таблица
+  fig-prefix: Рис.
+  tbl-prefix: Таблице
+execute: 
+  warning: false
+  echo: false
+  include: false
+keywords: [r, data analysis, quarto, markdown, pdf]
+bibliography: references.bib
+---
+
+```{r packages}
+library(tidyr)
+library(dplyr)
+library(forcats)
+library(arrow)
+library(ggplot2)
+library(PMCMRplus)
+```
+
+```{r tools}
+source('tools.R', encoding = 'UTF-8')
+```
+
+```{r data}
+df_meta <- open_dataset('data/db/meta', partitioning = 'job_id') |>
+  filter(job == params$job)
+```
+
+## О наборе данных
+
+В нашем распоряжении находится подборка объявлений о вакантных рабочих местах с сайта [HeadHunter](https://hh.ru/){target="_blank"} по запросу «`r params$job`».
+
+::: {.callout-caution title="Внимание"}
+Спасибо за внимание
+:::
+
+## Распределение заработных плат
+
+```{r salary-summary}
+#| include: true
+#| label: tbl-salary-summary
+#| tbl-cap: Основные характеристики распределения заработных плат
+salary_summary <- df_meta |>
+  summarise(
+    across(
+      salary,
+      .fns = list(
+        `Мин.`    = min,
+        `I кв.`   = ~quantile(., .25),
+        `Медиана` = median,
+        `III кв.` = ~quantile(., .75),
+        `Макс.`   = max,
+        `Среднее` = mean,
+        `СКО`     = sd
+      ),
+      .names = '{.fn}'
+    )
+  )
+
+knitr::kable(
+  collect(salary_summary),
+  digits = 1L,
+  format.args = list(big.mark = ' ', decimal.mark = ',')
+)
+```
+
+Средняя предлагаемая заработная плата по запросу «`r params$job`» составляет `r format_int_rus(pull(salary_summary, "Среднее", as_vector = TRUE))` ₽, медианное значение составляет `r format_int_rus(pull(salary_summary, "Медиана", as_vector = TRUE))` ₽. Основные характеристики выборки заработных плат приводятся в @tbl-salary-summary
+
+::: {.content-visible unless-format="pdf"}
+Эмпирическое распределение заработных плат графически отображено на @fig-salary-histogram-basic
+:::
+
+::: {.content-visible when-format="pdf"}
+Эмпирическое распределение заработных плат графически отображено на @fig-salary-histogram-tufte
+:::
+
+```{r salary-histogram}
+#| include: true
+#| label: fig-salary-histogram-draft
+p_hist <- df_meta |>
+  to_duckdb() |>
+  ggplot(aes(x = salary)) +
+  geom_density(alpha = .75, fill = '#5c2a96') +
+  scale_x_continuous('Предлагаемая заработная плата', labels = format_int_rus) +
+  scale_y_continuous('Вероятность') +
+  ggtitle(sprintf('Распределение заработных плат: %s', params$job))
+  
+```
+
+::: {.content-visible unless-format="pdf"}
+```{r}
+#| echo: false
+#| include: true
+#| label: fig-salary-histogram-basic
+#| fig-cap: Выборочная плотность распределения заработных плат
+p_hist + theme_light()
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+```{r}
+#| echo: false
+#| include: true
+#| label: fig-salary-histogram-tufte
+#| fig-cap: Выборочная плотность распределения заработных плат
+p_hist + ggthemes::theme_tufte()
+```
+:::
+
+В распределении наблюдаются локальные пики на круглых значениях, характерные для заработных плат.
+
+## Зависимость от опыта работы
+
+```{r experience-test}
+experience_test <- jonckheereTest(salary ~ experience, data = df_meta)
+result_dependency <- ifelse(
+  experience_test$p.value < .05, 'зависит', 'не зависит'
+)
+result_h0 <- ifelse(
+  experience_test$p.value < .05, 'отвергается', 'не отвергается'
+)
+```
+
+::: {.content-visible unless-format="pdf"}
+Размер заработной платы `r result_dependency` от требуемого опыта работы (@fig-experience-plot-basic). Гипотеза об отсутствии тренда `r result_h0` по критерию Джонкхира [@jonckheere1954] на уровне значимости 95% (p = `r format_small_rus(experience_test$p.value)`).
+:::
+
+::: {.content-visible when-format="pdf"}
+Размер заработной платы `r result_dependency` от требуемого опыта работы (@fig-experience-plot-tufte). Гипотеза об отсутствии тренда `r result_h0` по критерию Джонкхира [@jonckheere1954] на уровне значимости 95% (p = `r format_small_rus(experience_test$p.value)`).
+:::
+
+```{r}
+#| include: true
+#| label: fig-experience-plot-draft
+#| fig-cap: Распределение заработных плат в зависимости от требуемого опыта
+p_exp <- df_meta |>
+  # Ни Arrow, ни DuckDB не умеют работать с упорядоченными факторами
+  collect() |>
+  ggplot(aes(x = experience, y = salary)) +
+  geom_jitter(width = .25, alpha = .25) +
+  stat_summary(fun.data = 'median_hilow', colour = 'red3') +
+  scale_x_discrete('Требуемый опыт работы') +
+  scale_y_continuous('Предлагаемая заработная плата', labels = format_int_rus) +
+  ggtitle(sprintf('%s: опыт работы и размер заработной платы', params$job))
+```
+
+::: {.content-visible unless-format="pdf"}
+```{r}
+#| echo: false
+#| include: true
+#| label: fig-experience-plot-basic
+#| fig-cap: Распределение заработных плат в зависимости от требуемого опыта
+p_exp + theme_light()
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+```{r}
+#| echo: false
+#| include: true
+#| label: fig-experience-plot-tufte
+#| fig-cap: Распределение заработных плат в зависимости от требуемого опыта
+p_exp + ggthemes::theme_tufte()
+```
+:::
+
+::: {.content-visible unless-format="pdf"}
+## Литература
+:::
+
+::: {#refs}
+:::
