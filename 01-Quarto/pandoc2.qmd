@@ -29,6 +29,29 @@ Quarto enables you to weave together content and executable code into a finished
 Спасибо за внимание
 :::
 
+## Диаграммы
+
+Quarto нативно поддерживает редактирование диаграмм в формате `mermaid` и `Graphviz`.
+
+```{dot}
+//| label: ex-graphviz-code
+//| echo: fenced
+//| eval: true
+// Комментарий
+digraph G {
+  fontname="Roboto"
+  node [fontname="Roboto"]
+  x1, x2, x3, x4, x5, x6, x7, x8, x9 [shape=square];
+  F1 -> {x1, x2, x3};
+  F2 -> {x4, x5, x6};
+  F3 -> {x7, x8, x9};
+  G  -> {F1, F2, F3};
+  
+  fontsize=20;
+  label = "Граф";
+}
+```
+
 ## Running Code
 
 When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
