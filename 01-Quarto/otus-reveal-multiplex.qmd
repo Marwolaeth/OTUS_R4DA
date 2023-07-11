@@ -2,6 +2,7 @@
 title: "Язык R для анализа данных"
 subtitle: "Утилита формирования отчётов Quarto"
 author  : "otus.ru"
+lang: ru
 title-slide-attributes:
   data-background-image: images/title.jpg
   data-background-size: contain
