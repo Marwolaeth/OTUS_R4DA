@@ -40,3 +40,5 @@ misc
 *backup*
 # R Environment Variables
 .Renviron
+
+*.zip
