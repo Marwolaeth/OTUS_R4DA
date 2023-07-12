@@ -1,21 +1,19 @@
-library(arrow)
-library(dplyr)
+library(palmerpenguins)
 
-# Загружаем и фильтруем данные, не помещая их в память
-(jobs <- open_dataset('data/db/meta') |>
-    distinct(job) |>
-    pull(as_vector = TRUE)
-)
+# Получаем доступные названия видов и островов
+(all_species <- unique(penguins$species))
+(all_islands <- unique(penguins$island ))
 
-# Функция-обертка для рендеринга с параметром
-render_job_report <- function(job){
+# Функция-обертка для рендеринга с параметрами
+render_report <- function(species, island){
   quarto::quarto_render(
-    input = "salaries.qmd",
+    input = 'parametrised-penguins.qmd',
     output_format = 'html',
-    execute_params = list(job = job),
-    output_file = glue::glue("{job}-report.html")
+    execute_params = list(species = species, island = island),
+    output_file = tolower(glue::glue('penguin-report-{species}-{island}.html'))
   )
 }
 
 # Рендеринг
-purrr::walk(jobs, render_job_report)
+grid <- tidyr::expand_grid(all_species, all_islands)
+purrr::walk2(grid$all_species, grid$all_islands, render_report)
