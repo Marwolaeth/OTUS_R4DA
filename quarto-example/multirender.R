@@ -1,11 +1,13 @@
 library(arrow)
 library(dplyr)
 
+# Загружаем и фильтруем данные, не помещая их в память
 (jobs <- open_dataset('data/db/meta') |>
     distinct(job) |>
     pull(as_vector = TRUE)
 )
 
+# Функция-обертка для рендеринга с параметром
 render_job_report <- function(job){
   quarto::quarto_render(
     input = "salaries.qmd",
@@ -15,4 +17,5 @@ render_job_report <- function(job){
   )
 }
 
+# Рендеринг
 purrr::walk(jobs, render_job_report)

@@ -812,9 +812,10 @@ format:
 
 ```yaml
 ---
+lang: ru
 format:
   pdf:
-    mainfont: Georgia
+    mainfont: Corbel
     monofont: Consolas
     linkcolor: Bittersweet
     citecolor: Mahogany
@@ -823,7 +824,6 @@ format:
     fig-format: png
     include-in-header:
       - text: |
-          \usepackage[english,russian]{babel}
           \usepackage{fontspec}
           \setsansfont{Courier New}
           \usepackage{icomma}
