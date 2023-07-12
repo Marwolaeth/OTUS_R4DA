@@ -1,5 +1,5 @@
 ---
-title: "Зарплаты в Москве"
+title: Зарплаты в Москве — `r params$job`
 author: "otus.ru"
 lang: ru    # Загружает babel для TeX, меняет подписи на русские, но не идеально
 mainfont: Corbel

@@ -1,0 +1,56 @@
+---
+title: |
+  `r params$species` on `r params$island` Island
+subtitle: Penguin Parameters
+author: otus.ru
+date  : today
+format:
+  html:
+    theme: united
+    title-block-banner: true
+    include-in-header:
+      text: |
+        <!-- Fancy Ubuntu Orange selection -->
+        <style type="text/css">
+          ::selection {
+            background-color: #E95420;
+            color: #eee;
+          }
+        </style>
+execute: 
+  echo: false
+  warning: false
+params:
+  species: Adelie
+  island : Dream
+---
+
+```{r}
+#| label: load
+library(dplyr)
+library(palmerpenguins)
+library(ggplot2)
+```
+
+```{r}
+#| label: view
+df <- penguins |>
+  na.omit() |>
+  filter(species == params$species, island == params$island)
+```
+
+## Body Mass
+
+The body masses of `r params$species` penguins observed on `r params$island` island from `r min(df$year)` to `r max(df$year)` are summarised on @fig-plot-mass. The orange point with error bars represents mean values with a 95% confidence interval.
+
+```{r}
+#| label: fig-plot-mass
+#| fig-cap: Body Mass of {{< meta title >}}
+ggplot(df, aes(x = sex, y = body_mass_g)) +
+  geom_boxplot(alpha = .8) +
+  geom_jitter(width = .2, alpha = .5) +
+  stat_summary(fun.data = 'mean_cl_boot', colour = '#E95420') +
+  labs(x = 'Sex', y = 'Body mass (g)') +
+  theme_light()
+```
+
