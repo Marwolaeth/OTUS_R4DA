@@ -8,7 +8,7 @@ title-slide-attributes:
 format:
     revealjs:
       theme: otus.scss
-      incremental: true
+      incremental: false
       width: 960
       height: 540
       mermaid-format: png
