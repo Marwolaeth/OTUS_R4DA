@@ -1,19 +1,22 @@
 library(palmerpenguins)
-
-# Получаем доступные названия видов и островов
-(all_species <- unique(penguins$species))
-(all_islands <- unique(penguins$island ))
+library(dplyr)
 
 # Функция-обертка для рендеринга с параметрами
-render_report <- function(species, island){
+render_report <- function(species, island, format = 'html'){
+  format <- match.arg(format, c('html', 'pdf', 'docx'))
   quarto::quarto_render(
     input = 'parametrised-penguins.qmd',
-    output_format = 'html',
+    output_format = format,
     execute_params = list(species = species, island = island),
-    output_file = tolower(glue::glue('penguin-report-{species}-{island}.html'))
+    output_file = tolower(
+      glue::glue('penguin-report-{species}-{island}.{format}')
+    )
   )
 }
 
+# Получаем доступные комбинации видов и островов
+grid <- penguins |>
+  count(species, island)
+
 # Рендеринг
-grid <- tidyr::expand_grid(all_species, all_islands)
-purrr::walk2(grid$all_species, grid$all_islands, render_report)
+purrr::walk2(grid$species, grid$island, render_report)

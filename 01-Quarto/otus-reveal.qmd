@@ -864,6 +864,29 @@ format:
 Тогда давайте вернемся к презентации
 :::
 
+## Пример настройки: форматы MS Office {.smaller background-image="images/slide.jpg" background-size="contain"}
+
+Форматы приложений MS Office в значительной мере опираются на файлы-шаблоны с настроенными стилями, макетами и темами:
+
+```yaml
+---
+lang: ru
+format:
+  pptx:
+    reference-doc: tools/template.pptx
+    incremental: true
+    mermaid-format: png
+  docx:
+    toc: true
+    reference-doc: tools/template.docx
+    highlight-style: breeze
+---
+```
+
+::: {.notes}
+Для форматов Офиса возможности настройки на удивление ограничены. Внешний вид таких документов почти во всем зависит от настроек файла, который вы передаете в качестве шаблона (`reference-doc`): вся нагрузка по оформлению перемещается на редактирование этого файла: настройку полей, тем, в том числе шрифтов и прочего.
+:::
+
 {{< include otus-question.qmd >}}
 
 ## Фрагменты кода {.smaller background-image="images/slide.jpg" background-size="contain"}
